@@ -1,6 +1,6 @@
 # First-return periods on Darboux grids and hyperbolic limit cycles of polynomial fields
 
-Haibo Lu, Shanghai Institute of Technology. English manuscript R3.
+Haibo Lu, Shanghai Institute of Technology. English manuscript R4.
 
 [Paper](manuscript/main.pdf) · [TeX entry point](manuscript/main.tex) · [Bibliography](manuscript/references.bib) · [Exact reproduction](verification/README.md) · [Degree-by-degree bounds and grid witnesses](verification/results/degrees.csv).
 
