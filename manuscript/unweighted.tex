@@ -1,0 +1,97 @@
+\section{The unweighted periods and the two Laplace variables}\label{sec:pure}
+
+\subsection{A spanning set at the edge of the frequency grid}
+Fix a block and suppress $k,l$. For $A=T_a(x)T_b(y)$ define
+\[
+ K_x(A)=f\,dA+\lambda A\,df,\qquad K_y(A)=\lambda g\,dA+A\,dg .
+\]
+Their unweighted periods vanish. Indeed $d(|f|^\lambda A)=|f|^\lambda K_x(A)/f$ and
+$d(\lambda|g|^{1/\lambda}A)=|g|^{1/\lambda}K_y(A)/g$.
+On a level $|f|^\lambda|g|=e^{-h}$ these differentials are constant multiples of $K_x(A)/|fg|$ and $K_y(A)/|fg|$.
+
+Let $V(X)$ consist of the modes in $W(X)$ selected by their position in the array
+\[
+ \begin{array}{c|cc}
+ &b<M&b>M\\ \hline
+ a<N&E_{ab},F_{ab}&F_{ab}\\
+ a>N&E_{ab}&\varnothing
+ \end{array}
+\]
+The indices never equal $N$ or $M$. Shifts $a\mapsto a+N$ and $b\mapsto b+M$ biject their respective classes onto the indices above $N$ and $M$. Thus $|V(X)|=2P(X)-P(X-N)-P(X-M)$.
+
+To see that $V(X)$ spans modulo the kernel, order pairs by $a+b$. If $a>N$, the coefficients of $(E_{ab},F_{ab})$ in $2K_x(T_{a-N}T_b)$ are $(b,a+(\lambda-1)N)$. All its other terms have horizontal index $|a-2N|<a$. This follows by multiplying sines and cosines, with $U_{a-1}(\cos t)\sin t=\sin(at)$. If $b>M$, the corresponding row for $2K_y(T_aT_{b-M})$ is $(M+\lambda(b-M),\lambda a)$ and the other vertical index is $|b-2M|<b$. Folded indices stay in the same block because a shift by $N$ or $M$ adds an even multiple of the elementary step. When both rows occur their determinant is
+\[
+ (\lambda-1)NM\{a/N-1+\lambda(1-b/M)\}\ne0
+\]
+for irrational $\lambda>1$. With just one row the coefficient of the omitted form is positive. Induction now gives the spanning assertion, also when $V(X)$ is empty.
+
+\subsection{Transform and variation of the anisotropy}
+The unweighted period is, up to sign in its cell, a pseudo-Abelian integral of a rational form along levels of a Darboux first integral. In the level variable $v=e^{-h}$, the Laplace transform in $h$ is the one-sided Mellin transform with measure $v^{s-1}\,dv$ on $(0,1)$. Novikov uses Mellin poles to study local uniform bounds on the zeros of pseudo-Abelian integrals for logarithmic foliations with normal crossings and admissible perturbing forms~\cite[Theorem 2 and Section 3.3]{novikov}. For the present rank question we also vary the anisotropy, which lets us distinguish two frequencies that share a Mellin pole.
+
+Write $t>1$ for the variable anisotropy and $s$ for the complex Laplace exponent. For $\Re z>0$ put
+\[
+ I(z,c)=\int_{-\pi/2}^{\pi/2}(\cos\theta)^{z-1}\cos(c\theta)\dd\theta .
+\]
+Cauchy's beta integral gives
+\begin{equation}\label{eq:beta}
+ I(z,c)=\pi 2^{1-z}\Gamma(z)Y_c(z),\qquad
+ Y_c(z)=\frac1{\Gamma((z+1+c)/2)\Gamma((z+1-c)/2)} .
+\end{equation}
+For instance, in Cauchy's integral for $(1+iu)^{-a}(1-iu)^{-b}$ put $u=\tan\theta$, $a=(z+1+c)/2$, $b=(z+1-c)/2$. The result for $\Re a,\Re b>0$, $\Re(a+b)>1$ extends to all $c$ by entirety in $c$ at fixed $z$~\cite[Eq.~5.12.8]{dlmf}.
+
+Let $D_h$ be the angle sublevel disk $H\le h$. Green's formula applied to \eqref{eq:angles} for $E_{ab}$ gives the integral over $D_h$ of
+\[
+ \frac{\sigma}{M}\,\partial_\xi\!\left(\frac{\sin(\alpha\xi)}{\cos\xi}\right)
+               \frac{\cos(\beta\eta)}{\cos\eta}.
+\]
+For $F_{ab}$ the derivative acts on $\sin(\beta\eta)/\cos\eta$ in the other variable, with prefactor $-\sigma/N$. On $\Re s>2$ the integral in $h$ against $e^{-sh}$ is absolutely convergent. Indeed, integration of its absolute majorant from $H$ to infinity gives a multiple of
+$(\cos\xi)^{t\Re s-2}(\cos\eta)^{\Re s-2}$, integrable on the angle square and locally uniform in $s$. Complex powers use the real logarithm of the positive cosine. Fubini gives for $E_{ab}$ a factor $\sigma I(s,\beta)/(Ms)$ times the differentiated horizontal integral weighted by $(\cos\xi)^{ts}$. Two integrations by parts give $\alpha ts\,I(ts,\alpha)/(ts-1)$ for that integral. The endpoint factors have positive real exponent, including $(\cos\xi)^{ts-1}$. Interchanging the variables gives the second transform. With
+\[
+ K_t(s)=\pi^2 2^{2-ts-s}\Gamma(ts-1)\Gamma(s-1)
+\]
+the results divided by $K_t(s)$ are
+\begin{align}
+ E_{ab}:&\quad \sigma\frac{\alpha}{M}t(s-1)Y_\alpha(ts)Y_\beta(s),\nonumber\\
+ F_{ab}:&\quad-\sigma\frac{\beta}{N}(ts-1)Y_\alpha(ts)Y_\beta(s).
+ \label{eq:transforms}
+\end{align}
+
+At fixed $t$ these formulas sample only the line $(z,w)=(ts,s)$. To separate the two frequencies we need to vary $t$ in a putative relation, even though its coefficients at our chosen $\lambda$ are arbitrary real numbers.
+
+\begin{lemma}\label{lem:lift}
+Let the columns of a finite list be unweighted periods of block forms whose mode coefficients are Laurent polynomials in $t$ over $\QQ$. Dependence at one real transcendental value $t=\lambda>1$ implies a relation for all real $t>1$, with coefficients in $\QQ[t]$ not all zero. Its normalized transforms \eqref{eq:transforms}, with $t=z/w$ and $s=w$, satisfy an identity for independent $z,w$.
+\end{lemma}
+\begin{proof}
+Put $u=\sgn(\xi)\sqrt{-2\ln\cos\xi}$ and $v=\sgn(\eta)\sqrt{-2\ln\cos\eta}$. With the values at zero given by continuity, these are analytic coordinates and $H=(tu^2+v^2)/2$. The inverse angle $\theta(u)$ satisfies
+\begin{equation}\label{eq:morse}
+ \cos\theta(u)=e^{-u^2/2},\qquad
+ \theta'(u)=\sqrt{u^2/(e^{u^2}-1)},\qquad \theta(0)=0 .
+\end{equation}
+Its germ is odd with rational Taylor coefficients. In Green's formula the area density is even in each Morse coordinate. Its Taylor coefficients are rational for each normalized dyadic pair, up to the stated Laurent coefficients in $t$. Integrating a term $u^{2i}v^{2j}$ over the ellipse gives $\pi t^{-1/2}t^{-i}$ times a rational multiple of $h^{i+j+1}$. On a small ellipse the series converges uniformly, so the Taylor rows after removal of $\pi t^{-1/2}$ lie in $\QQ[t,t^{-1}]$. This requires only a neighborhood of zero for each fixed $t$. For $h>0$, rescaling the ellipse to the unit disk also gives analytic dependence on $h$ locally, by analyticity on a neighborhood of the compact disk.
+
+If there are $d$ columns, dependence kills all $d$-rowed minors at $\lambda$. Transcendence kills them identically. A maximal independent set of rows over $\QQ(t)$ is finite and spans all rows, so its common nullspace contains a nonzero vector over $\QQ(t)$. Clear denominators. The resulting polynomial vector annihilates every Taylor row at every $t>1$. Convergence at zero and real-analytic uniqueness on $(0,\infty)$ give zero periods for this combination. Taking the absolutely convergent transforms first at \emph{real} $s>2$ and dividing by $K_t(s)>0$ gives an identity on the real open cone $z>w>2$. After clearing powers of $z$ and $w$ its left side is entire in $(z,w)$ because $1/\Gamma$ is entire. It vanishes everywhere by the one-variable identity theorem applied successively to the two intervals of a rectangle in the cone. The same argument applies after clearing any rational factors introduced later.
+\end{proof}
+
+\subsection{Separating frequency pairs}
+Every normalized frequency $c$ is an odd integer divided by $2^k$ or $2^l$. It has a unique representative $c_*\in(0,1)$ modulo $c\equiv\pm c_*\pmod2$. Write $Y_c(v)=B_c(v)Y_{c_*}(v)$. Then $B_{c_*}=1$ and for $m\ge1$ and $e=\pm c_*$ the gamma recurrence gives
+\begin{equation}\label{eq:shift}
+ B_{2m+e}(v)=\prod_{j=1}^m\frac{v+1-e-2j}{v+1+e+2(j-1)} .
+\end{equation}
+The zeros are positive and the poles are negative and simple. The leftmost pole is $1-c$ for $c>1$.
+
+\begin{lemma}\label{lem:classes}
+For distinct $c$ in $(0,1)$ the functions $Y_c(v)$ are independent over $\CC(v)$. Consequently the products $Y_u(z)Y_v(w)$ indexed by distinct base pairs are independent over $\CC(z,w)$.
+\end{lemma}
+\begin{proof}
+Normalize a rational relation of shortest length so that the coefficient of $Y_b$ is one. Shift the argument by two and use $Y_c(v+2)/Y_c(v)=4/((v+1)^2-c^2)$. Eliminating $Y_b$ would shorten the relation unless every other nonzero coefficient $R$ at $Y_c$ satisfies
+\[
+ \frac{R(v+2)}{R(v)}=\frac{(v+1)^2-c^2}{(v+1)^2-b^2}.
+\]
+Sum zero and pole orders on $-1+c+2\mathbb Z$. On the left they telescope to zero, since a rational function has finite divisor there. The right side has exactly one zero and no pole in that coset because $0<b,c<1$ and $b\ne c$. A one-term relation is also impossible. For products, clear denominators so the coefficients are polynomials. Fix $z$ and apply the one-variable conclusion in $w$, then fix $w$ and apply it in $z$. Each polynomial coefficient vanishes identically.
+\end{proof}
+
+\begin{proof}[Proof of \eqref{eq:pure}]
+Apply Lemma~\ref{lem:lift} to $V(X)$. By Lemma~\ref{lem:classes}, after division by the base factors the rational identity holds separately for each base pair $(u,v)$. In this pair the list consists of the two modes at $(Nu,Mv)$ when present, $E$-modes with $a>N$, $b=Mv$, and $F$-modes with $a=Nu$, $b>M$. Suppose an $E$-coefficient $p(t)$ on the horizontal arm is nonzero and choose the largest such $a$. In $z$ only this term has a pole at $z_0=1-a/N<0$. Taking its residue in the rational identity over $\CC(w)$ gives a nonzero rational factor times $p(z_0/w)$. This contradicts $p\ne0$. On the vertical arm the leftmost pole in $w$ eliminates the largest $b$ in the same way, now over $\CC(z)$.
+
+For the two remaining modes substitute $z=tw$. Absorbing the nonzero constant factors into the coefficients gives $p(t)t(w-1)+q(t)(tw-1)=0$. The linear and constant coefficients in $w$ force $p=q=0$, since $t$ is variable. This rules out dependence at $\lambda$. Together with the spanning argument it proves \eqref{eq:pure} for every threshold.
+\end{proof}

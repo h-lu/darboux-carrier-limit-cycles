@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper]{amsart}
+\ifdefined\pdftrailerid\pdftrailerid{}\fi
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,mathtools,amssymb,booktabs,graphicx}
+\usepackage[margin=28mm,top=28mm,bottom=29mm]{geometry}
+\usepackage[hidelinks,pdfauthor={Haibo Lu},pdftitle={Carrier-weighted Darboux polycycle grids and exact two-variable Laplace rank}]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\numberwithin{equation}{section}
+\newcommand{\HH}{H_{\mathrm{hyp}}}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\W}{\mathcal W}
+\newcommand{\B}{\mathcal B}
+\newcommand{\A}{\mathcal A}
+\newcommand{\dd}{\,d}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\clos}{\mathcal E}
+\title[Carrier-weighted Darboux polycycle grids]{Carrier-weighted Darboux polycycle grids and exact two-variable Laplace rank}
+\author{Haibo Lu}
+\address{Shanghai Institute of Technology}
+\date{}
+\subjclass[2020]{34C07, 34C05, 37G15}
+\keywords{Polynomial vector field, hyperbolic limit cycle, Darboux first integral, Melnikov function, Laplace transform}
+\begin{document}
+\begin{abstract}
+A polynomial multiplier positive on a period annulus preserves its periodic orbits.
+If only the unperturbed field is multiplied, the reciprocal multiplier enters the first variation of its return map. We use this freedom on a grid of heteroclinic rectangles whose sides are zeros of two Chebyshev polynomials. For a carrier of degree equal to the vertical grid order, we determine the kernel of the weighted period map on each dyadic frequency block. The rank calculation separates frequency pairs in two Laplace variables, including modes with coincident poles in one variable. One polynomial perturbation then produces hyperbolic limit cycles in the interiors of the rectangles. For every sufficiently large total degree budget $D$, the resulting lower bound has leading term $5D^2(\ln D)^2/[24(\ln 2)^2]$ and an explicit loss of order $D^2\ln D\ln\ln D$. We also give integer certificates at finite degrees.
+\end{abstract}
+\maketitle
+
+\section{The cost of changing a return integral}
+
+Consider an annulus filled by periodic orbits of an integrable vector field. Multiplying the field by a positive scalar function $C$ changes the time spent on each arc. If a polynomial perturbation is then added, its first-order effect over one turn is integrated with weight $1/C$. Two forms whose periods agreed before the change can therefore give independent first variations on the very same ovals. For polynomial fields this freedom has a price. Each degree spent on $C$ is a degree that the unperturbed field and its multiplier must share.
+
+We study that trade on a rectangular grid. The two polynomials $f(x)=T_N(x)$ and $g(y)=T_M(y)$ define the vertical and horizontal saddle connections of the field $(fg',-\lambda f'g)$, where $\lambda>1$. Inside a bounded rectangle the ovals are the curves $|f|^\lambda|g|=\mathrm{constant}$. The field has degree $N+M-1$. With the carrier $C=1-\kappa g$, the cost rises to $N+2M-1$, while a perturbing one-form of degree $D$ can still use every admissible pair of Chebyshev indices $a+b\le D+1$. The question is which of those directions survive integration. For example, with $N=M=4$ and $D=11$, both fields admit the same 42 forms in the block with odd indices. Its rank rises from 22 to 33. This gain on one block is compatible with the choices required on the other rectangles.
+
+Let $\HH(D)$ be the supremum of the sizes of finite sets of distinct hyperbolic limit cycles of one real autonomous planar polynomial field $X=(P,Q)$ with $\deg X=\max(\deg P,\deg Q)\le D$. Both degrees are total degrees in $(x,y)$. Hyperbolicity means that the return multiplier has modulus different from one. Counting all isolated periodic orbits defines $H(D)\ge\HH(D)$. All unmarked logarithms below are natural.
+\begin{theorem}\label{th:main}
+There are constants $K>0$ and $D_0$ such that, for every integer $D\ge D_0$, a field of degree at most $D$ has at least
+\begin{equation}\label{eq:main}
+ \frac{5D^2}{24(\ln 2)^2}\bigl((\ln D)^2-2\ln D\ln\ln D\bigr)-K D^2\ln D
+\end{equation}
+distinct hyperbolic limit cycles. In particular $\liminf_{D\to\infty}\HH(D)/(D^2(\ln D)^2)\ge 5/[24(\ln 2)^2]$.
+\end{theorem}
+
+Qin and Sun obtained square-logarithmic growth by a hierarchy of first-order perturbations~\cite{qin}. Their Theorem~2.2 supplies the hierarchical realization step. For Theorem~1.1 they use two ternary filtrations on an anisotropic squared-Chebyshev Hamiltonian. The filtrations group centers and perturbations so that a diagonal block acts by the same germ up to scale on many annuli. Under sufficiently strong anisotropy a Borel--Gauss argument gives full rank on their Cartesian blocks. We use the same principle of simultaneous realization. Here the centers sit at the extrema between consecutive invariant lines. A binary filtration can use these extrema, and its triangular degree cutoff creates a kernel even in a single block. Determining how a positive multiplier changes this kernel is the source of the coefficient in \eqref{eq:main}.
+
+Multipliers also appear in the construction of Gasull and Santana, who multiply a field by the equation of a prescribed algebraic curve with only finitely many singular points and perturb so as to keep its old cycles and obtain algebraic cycles on ovals of the curve~\cite[Theorem A]{invariant}. Here the multiplier is positive throughout the grid. The cycles counted below bifurcate from compact regular ovals strictly inside its cells. The geometry of the saddle connections supplies the period annuli, while the integral on each annulus determines the count.
+
+A different all-degree bound comes from mechanical renewal. Auxiliary one-dimensional folds supply families of new period zeros at each planar copying stage. The leading coefficient is $1/[8(\ln2)^2]$ and the error is $O(D^2\ln D)$ in Lu's lower bound for hyperbolic cycles~\cite[Theorem 1.1]{mechanical}. Theorem~\ref{th:main} increases that leading coefficient by a factor of $5/3$, with a larger lower-order loss. Both bounds use the total degree of the final field. An ordinary monomial budget counts the terms in the two expanded components and allows arbitrary exponents. A single Chebyshev mode can contain many such terms. Section~\ref{sec:counts} compares the degree quantifiers and finite certificates. The monomial-budget problem is treated in~\cite{monomial}.
+
+Expanding the reciprocal carrier in its parameter gives moments on a quadrant arc of an oval. These moments reduce a possible kernel element to a multiple of the foliation form plus an unweighted period relation. The remaining obstruction is a collision of frequencies. A high-degree term can have the same horizontal pole as a lower-degree term with a different vertical frequency. Varying the anisotropy in an analytic identity gives two independent Laplace variables. After separating the vertical frequency classes, a horizontal residue detects precisely the terms that would exceed the degree budget.
+
+\section{The grid and its first variation}\label{sec:grid}
+We use $T_n(\cos t)=\cos(nt)$ and $U_{n-1}(\cos t)=\sin(nt)/\sin t$, so $T'_n=nU_{n-1}$. Set $S=D+1$. Take $N,M\ge2$ and use either $C=1$ ($p=0$, $\kappa=0$) or $C=1-\kappa g$ ($p=1$, $0<\kappa<1/2$). Assume $N+(1+p)M\le S$. For a polynomial form $\omega=A\,dx+B\,dy$ with $\max(\deg A,\deg B)\le D$, consider
+\begin{equation}\label{eq:field}
+ X_\mu=\bigl(Cfg'-\mu B,\;-C\lambda f'g+\mu A\bigr),\qquad
+ \Omega=\lambda f'g\,dx+fg'\,dy .
+\end{equation}
+Since $|g|\le1$ on $[-1,1]$, the carrier exceeds $1/2$ on the grid. Both unperturbed components have degree $d_0=N+(1+p)M-1$. Thus \eqref{eq:field} has degree at most $D$ for every real $\mu$. For fixed nonzero $\omega$ and sufficiently small nonzero $\mu$, its actual degree is $\max(d_0,\deg\omega)$. When the two degrees coincide a nonzero top coefficient of $X_0$ stays nonzero by continuity.
+
+The $N$ roots $\cos((2a-1)\pi/(2N))$, $1\le a\le N$, and the analogous $M$ vertical-coordinate roots delimit $(N-1)(M-1)$ bounded rectangles. Between consecutive roots in each coordinate use
+\begin{equation}\label{eq:chart}
+ x=\cos((j\pi+\xi)/N),\qquad y=\cos((i\pi+\eta)/M),
+ \qquad |\xi|,|\eta|<\pi/2 ,
+\end{equation}
+where $1\le j<N$, $1\le i<M$. Both coordinate derivatives are negative, so the chart preserves orientation. The lines $f=0$ and $g=0$ are invariant by \eqref{eq:field} at $\mu=0$. Their intersections are saddles with eigenvalues $Cf'g'$ and $-\lambda Cf'g'$. Along the open edge between neighboring intersections the field is nonzero and tangent to the edge. In each open cell $f=(-1)^j\cos\xi$, $g=(-1)^i\cos\eta$, and
+\begin{equation}\label{eq:energy}
+ H=-\lambda\ln|f|-\ln|g|=-\lambda\ln\cos\xi-\ln\cos\eta,\qquad
+ \Omega=-fg\,dH .
+\end{equation}
+In angle coordinates $H$ has positive definite Hessian, a unique minimum at $(0,0)$ and infinite boundary values. Its positive levels are nested regular Jordan curves. We orient them counterclockwise and denote them by $\gamma_h$. At $(\xi,\eta)=(\arccos e^{-h/\lambda},0)$ the sign of $\dot\eta$ is $(-1)^{j+i}$. Hence the forward orbit traverses $(-1)^{j+i}\gamma_h$, as in Figure~\ref{fig:cells}.
+\begin{figure}[tb]
+\centering\includegraphics[width=.89\linewidth]{figures/cells.pdf}
+\caption{The grid at $N=M=4$, $\lambda=\pi$. Filled squares are saddles, dots are centers and the solid curves are sampled regular levels $h=0.35,1.25$. Arrows follow the unperturbed flow on the outer ovals. At right the highlighted central cell is drawn in angle coordinates. Shading gives the extra weight $1/(1-\kappa\cos\eta)$ for $i=2$ and $\kappa=1/3$. The dashed segment is the return section.}\label{fig:cells}
+\end{figure}
+
+On a regular period annulus the time-change calculation has a simple general form. Let a smooth field $Z$ have a regular first integral $H$ there, and perturb $CZ$ by $\mu Y$ with $C>0$ and $C,Y$ smooth. Use $H$ on a transversal and let $z_h(t)$ run around the unscaled field $Z$ in time $T(h)$. The coefficient of $\mu$ in the return displacement is
+\[
+ \int_0^{T(h)}\frac{dH(Y)(z_h(t))}{C(z_h(t))}\dd t .
+\]
+Indeed $\dot H=\mu dH(Y)$ on the perturbed arc, and at $\mu=0$ the time element of $CZ$ is $dt/C$. Thus the local contribution of the perturbation is multiplied by the reciprocal speed factor on each arc.
+
+For the grid, the form $C\Omega-\mu\omega$ annihilates $X_\mu$. Use the section $\eta=0$, $\xi>0$ with coordinate $h=H$. On each compact interval $I\Subset(0,\infty)$ the energy displacement is
+\begin{equation}\label{eq:period}
+ \mathcal P_\mu(h)-h=-\mu L_C[\omega](h)+O_{C^1(I)}(\mu^2),\qquad
+ L_C[\omega](h)=\oint_{\gamma_h}\frac{\omega}{C\,|fg|}.
+\end{equation}
+Indeed the exact trajectory identity is $dH=-\mu\omega/(Cfg)$ on orbit tangents. The forward orientation cancels the sign of $fg$. An enlarged compact energy interval in $(0,\infty)$ provides a collar on which $C>1/2$, $fg\ne0$ and $X_0\ne0$. Transversality and analytic dependence of the local flow give an analytic return time near each point of $I$. Compactness gives bounded return times, persistence of these first returns inside the collar and a uniform Taylor remainder together with its $h$-derivative. This also proves real analyticity of $L_C$ on the positive energy axis.
+
+One can see an individual direction become visible already at $N=M=2$. In the only cell, $f=-\cos\xi$, $g=-\cos\eta$ and $A=xy=\sin(\xi/2)\sin(\eta/2)$. Put $\omega=f\,dA+\lambda A\,df$ and $V=|f|^\lambda A$. Along the oval $\omega/|fg|=-e^h dV$, so $L_1[\omega]=0$. With $C=1-\kappa g$, integration by parts gives
+\begin{equation}\label{eq:visible}
+ L_C[\omega]=\kappa e^h\oint_{\gamma_h}\frac{V\,dg}{C^2}>0\qquad (h>0).
+\end{equation}
+On the positive quadrant arc $V>0$ and $dg=\sin\eta\,d\eta$ is positive in the forward counterclockwise direction. Each angle reflection reverses orientation and negates the pulled-back form, so all four arcs contribute equally. The same ovals now detect a perturbation whose unweighted period vanished identically.
+
+\subsection{Frequencies visible on a cell}
+Write $2^r\mid N$, $2^s\mid M$ with $r,s\ge1$. For $1\le k\le r$, let $J_k$ consist of $1\le j<N$ of the form $2^{k-1}j'$ with $j'$ odd. Define $I_l$ in the same way for $M$. Their cardinalities are $N/2^k$ and $M/2^l$. Cells with indices divisible by $2^r$ or $2^s$, respectively, need not enter the count. Set
+\[
+ \A_k=(N/2^k)\{1,3,5,\ldots\},\qquad
+ \B_l=(M/2^l)\{1,3,5,\ldots\},
+\]
+and count the pairs under the degree cutoff by
+\[
+ P_{kl}(X)=\#\{(a,b)\in\A_k\times\B_l:a+b\le X\}.
+\]
+Write $W(X)=\W_{kl}(X)$ for the span of the following two forms for every such pair,
+\begin{equation}\label{eq:modes}
+ E_{ab}=T_a(x)U_{b-1}(y)\,dy,\qquad F_{ab}=U_{a-1}(x)T_b(y)\,dx .
+\end{equation}
+Their degrees are $a+b-1$. Their leading bidegrees in each component are distinct, giving $\dim W(X)=2P_{kl}(X)$. A nonpositive threshold contributes zero.
+
+Write $\alpha=a/N$, $\beta=b/M$, $e_l=(-1)^i$ on $I_l$ ($e_1=-1$, $e_l=1$ for $l>1$) and $\sigma=\sin(aj\pi/N)\sin(bi\pi/M)$. Reflections of either angle preserve $H$ and $C|fg|$ and reverse the orientation of its ovals. Only the part of a form odd under pullback by each reflection contributes. For $E_{ab},F_{ab}$ the resulting integrands, including the differential, are respectively
+\begin{equation}\label{eq:angles}
+ \frac{\sigma}{M}\frac{\sin(\alpha\xi)\cos(\beta\eta)\,d\eta}{C\cos\xi\cos\eta},\qquad
+ \frac{\sigma}{N}\frac{\cos(\alpha\xi)\sin(\beta\eta)\,d\xi}{C\cos\xi\cos\eta}.
+\end{equation}
+Here $C=1-p\kappa e_l\cos\eta$. A mode from $(k',l')$ vanishes on $J_k\times I_l$ if $k'<k$ or $l'<l$, since one sine factor is zero. On its own block write $a=(N/2^k)u$, $b=(M/2^l)v$, $i=2^{l-1}i'$. Both phases are odd half-integers times $\pi$, so \eqref{eq:angles} gives the full pullback there. The sign
+\[
+ \sigma=(-1)^{(u-1)/2+(v-1)/2}\,(-1)^{(j'-1)/2+(i'-1)/2}
+\]
+splits into a frequency sign and a cell sign. The block period maps on its cells thus agree up to one overall sign. In computing ranks we use the cell with $j'=i'=1$.
+
+\begin{theorem}[Block ranks]\label{th:rank}
+Fix a real transcendental $\lambda>1$. Abbreviate $P=P_{kl}$. With $C=1$ the real rank of $L_1$ on $W(X)$, for every real $X$, is
+\begin{equation}\label{eq:pure}
+ R_0(X)=2P(X)-P(X-N)-P(X-M).
+\end{equation}
+With $C=1-\kappa g$ and $N+2M\le S$, the real rank on $W(S)$ is
+\begin{equation}\label{eq:carrier}
+ R_1(S)=2P(S)-2P(S-N-M)-P(S-2M)+P(S-N-2M)
+\end{equation}
+for all $\kappa\in(0,1/2)$ outside a finite set. For fixed $N,M,S,\lambda$ one choice works for every block.
+\end{theorem}
+Here the subscript in $L_C$ denotes the polynomial multiplier. In particular $L_1$ is the unweighted map. The ranks concern the specified spaces of period functions. The passage from their dimensions to a lower bound for cycles is made in Section~\ref{sec:counts}.
+\input{unweighted}
+\input{weighted}
+\input{counts}
+\bibliographystyle{amsplain}
+\bibliography{references}
+\end{document}
