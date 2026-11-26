@@ -1,7 +1,7 @@
 \section{Simultaneous hyperbolic cycles and the degree bound}\label{sec:counts}
 
 \begin{theorem}[Finite grid certificate]\label{th:finite}
-Let $2^r\mid N$, $2^s\mid M$, $r,s\ge1$ and $N+(1+p)M\le D+1$. Write $R_{kl}^{(p)}$ for \eqref{eq:pure} or \eqref{eq:carrier} at $S=D+1$. There exists one field \eqref{eq:field} having at least
+Fix $p\in\{0,1\}$. Let $2^r\mid N$, $2^s\mid M$, $r,s\ge1$ and $N+(1+p)M\le D+1$. Write $R_{kl}^{(p)}$ for \eqref{eq:pure} or \eqref{eq:carrier} at $S=D+1$. There exists one field \eqref{eq:field} of total degree at most $D$ having at least
 \begin{equation}\label{eq:gridcount}
  L_p(D;N,M,r,s)=\sum_{k=1}^r\sum_{l=1}^s
        \frac{NM}{2^{k+l}}\big(R_{kl}^{(p)}-1\big)_+
@@ -45,5 +45,5 @@ For a general budget we allow \(m\) to vary to recover the same leading coeffici
  s_pN-1\le D,\qquad N=S/s_p+O(S/\ln S),\qquad
  r=(\ln S-\ln\ln S)/\ln 2+O(1).
 \]
-Equations~\eqref{eq:sym0}--\eqref{eq:sym1} give \(a_pN^2r^2+O(S^2)\). Rounding \(N\) costs \(O(S^2\ln S)\) after multiplication by \(r^2\). In squaring \(r\) the cross term is \(-2\ln S\ln\ln S/(\ln 2)^2\), and \((\ln\ln S)^2=O(\ln S)\). Substitution yields~\eqref{eq:main} for each \(p\), with common constants by taking the larger of the two. Thus the explicit \(\ln\ln D\) loss comes from filling all degree budgets in this construction.
+The degree of the field from this square certificate is \(s_pN-1\), which can lie strictly below \(D\). Equations~\eqref{eq:sym0}--\eqref{eq:sym1} give \(a_pN^2r^2+O(S^2)\). Rounding \(N\) costs \(O(S^2\ln S)\) after multiplication by \(r^2\). In squaring \(r\) the cross term is \(-2\ln S\ln\ln S/(\ln 2)^2\), and \((\ln\ln S)^2=O(\ln S)\). Substitution yields~\eqref{eq:main} for each \(p\), with common constants by taking the larger of the two. Thus the explicit \(\ln\ln D\) loss comes from filling all degree budgets in this construction.
 \end{proof}

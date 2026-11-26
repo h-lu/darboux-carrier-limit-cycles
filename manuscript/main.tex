@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,mathtools,amssymb,booktabs,graphicx}
 \usepackage[expansion=false]{microtype}
-\usepackage[margin=28mm,top=28mm,bottom=29mm]{geometry}
+\usepackage[margin=27mm,top=25.4mm,bottom=25.4mm]{geometry}
 \usepackage[hidelinks,pdfauthor={Haibo Lu},pdftitle={First-return periods on Darboux grids and hyperbolic limit cycles of polynomial fields}]{hyperref}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
@@ -38,14 +38,14 @@ On a rectangular grid of invariant lines, a polynomial multiplier positive throu
 
 \section{First-return periods at a prescribed degree}
 
-On a period annulus, a small polynomial perturbation displaces the energy \(h\) by a first-order period integral. Multiplying the integrable field by a positive function \(C\) preserves the ovals and weights that integral by \(1/C\). This is the Poincar\'e--Pontryagin formula~\cite[\S1]{gavrilov}. For a Darboux first integral it gives a pseudo-Abelian integral~\cite[\S1]{firstdarboux}. Which periods remain independent if both the multiplied field and the perturbation must fit in a prescribed degree?
+For the perturbation \(dF-\mu\omega=0\) of a polynomial Hamiltonian, the Poincar\'e--Pontryagin formula gives the linear term of the return displacement in \(F\) as \(\mu\int_{\Gamma_h}\omega\), where \(\Gamma_h\) is a regular oval oriented by the flow~\cite[\S1, (1.1)--(1.3)]{gavrilov}. Darboux first integrals give rise to pseudo-Abelian periods~\cite[\S1]{firstdarboux}. On the grid studied here, a positive polynomial multiplier \(C\) preserves the ovals and changes the time spent along them. Section~\ref{sec:grid} derives the reciprocal weight \(1/C\) in~\eqref{eq:period}. Which periods remain independent when both the multiplied field and its perturbation must fit in the same degree budget?
 
-The lines \(f(x)=0,\ g(y)=0\), with \(f=T_N,\ g=T_M\) Chebyshev polynomials, enclose heteroclinic rectangles of the field \(Z=(fg',-\lambda f'g)\). For \(\lambda>1\) the ovals satisfy \(|f|^\lambda|g|=\mathrm{constant}\). Write \(C_p=1-p\kappa g\), with \(0<\kappa<1/2\) when \(p=1\). The field \(Z\) has degree \(N+M-1\), while \((1-\kappa g)Z\) has degree \(N+2M-1\). The multiplier can make more periods independent, at the cost of \(M\) degrees otherwise available for the grid.
+The lines \(f(x)=0,\ g(y)=0\), with \(f=T_N,\ g=T_M\) Chebyshev polynomials, enclose heteroclinic rectangles of the field \(Z=(fg',-\lambda f'g)\). For \(\lambda>1\) the ovals satisfy \(|f|^\lambda|g|=\mathrm{constant}\). We use \(C_0=1\) and \(C_1=1-\kappa g\). The field \(Z\) has degree \(N+M-1\), while \((1-\kappa g)Z\) has degree \(N+2M-1\). The multiplier can make more periods independent, at the cost of \(M\) degrees otherwise available for the grid.
 
 Let \(\HH(D)\) be the supremum of the sizes of finite families of hyperbolic limit cycles of one real autonomous planar field \(X=(P,Q)\) with \(\max(\deg P,\deg Q)\le D\). Both degrees are ordinary total degrees in the Euclidean coordinates \(x,y\). The number of monomials is unrestricted. Hyperbolicity means that the return multiplier has modulus different from one. Counting all isolated periodic orbits gives the Hilbert number \(H(D)\ge\HH(D)\). Unmarked logarithms are natural.
 
 \begin{theorem}\label{th:main}
-Take \(\lambda=\pi\), \(c_0=3/16\) and \(c_1=5/24\). There exist \(K>0\) and \(D_0\) such that for every integer \(D\ge D_0\) and each \(p\in\{0,1\}\) some even \(N,M\) and a choice of \(C_p\) give one polynomial perturbation of \(C_pZ\), of total degree at most \(D\), with at least
+Fix \(\lambda=\pi\) and put \(c_0=3/16,\ c_1=5/24\). There are \(K>0\) and \(D_0\) such that for every integer \(D\ge D_0\) and each \(p\in\{0,1\}\) one can choose even grid orders \(N,M\ge2\) and, for \(p=1\), a strength \(\kappa\in(0,1/2)\), so that a single polynomial perturbation of \(C_pZ\) yields a field of total degree at most \(D\) with at least
 \begin{equation}\label{eq:main}
  \frac{c_p D^2}{(\ln 2)^2}
        \bigl((\ln D)^2-2\ln D\ln\ln D\bigr)-K D^2\ln D
@@ -54,7 +54,9 @@ distinct hyperbolic limit cycles. In particular
 \(\displaystyle\liminf_{D\to\infty}\HH(D)/(D^2(\ln D)^2)\ge 5/[24(\ln 2)^2]\).
 \end{theorem}
 
-Christopher and Lloyd's fourfold construction copies existing cycles and creates new nests near centers~\cite[\S3]{christopher}. Li, Chan and Chung revised the count for symmetric Hamiltonian constructions and obtained order \(D^2\ln D\) on the sequences \(2^j-1\) and \(3\cdot2^{j-1}-1\)~\cite[\S3 and Theorem 5.2]{lichan}. Han and Li proved an all-degree \(\liminf\) bound with coefficient \(1/(2\ln 2)\) on the scale \(D^2\ln D\). Their recurrence carries both odd-multiplicity cycles and specified boundary tangencies on a rectangle~\cite[Theorems 1.3 and 2.1]{hanli}. These tangencies make further creation of cycles possible after a fold. In the present construction the rectangle edges are saddle connections. The cycles are created on regular ovals in their interiors.
+Christopher and Lloyd's fourfold construction copies existing cycles and creates new nests near centers~\cite[\S3]{christopher}. Itenberg and Shustin patchworked such examples on triangles in a subdivision of the degree polygon. Their Theorem~2.1 gives, for each integer \(d\ge3\), a field of degree \(d\) with at least \(\tfrac12 d^2\log_2 d-Kd^2\log_2(\log_2 d)\) limit cycles for an absolute \(K>0\). Their proof glues the simple cycles of the triangular pieces~\cite[Theorems 1.3.1 and 2.1, Proposition 2.2]{itenberg}. Li, Chan and Chung revised the count for symmetric Hamiltonian constructions and obtained order \(d^2\ln d\) on the sequences \(2^j-1\) and \(3\cdot2^{j-1}-1\)~\cite[\S3 and Theorem 5.2]{lichan}.
+
+Han and Li write \(H(d)\) for the maximal number of limit cycles of a degree-\(d\) field and \(H^*(d)\) for its near-Hamiltonian counterpart. For every sufficiently small \(\epsilon>0\), their Theorem~1.3 gives \(H(d)\ge H^*(d)>(1/(2\ln2)-\epsilon)(d+2)^2\ln(d+2)\) for all sufficiently large \(d\). The recurrence propagates odd-multiplicity cycles and specified boundary tangencies on a rectangle~\cite[Theorems 1.3 and 2.1]{hanli}. Odd multiplicity can exceed one, and the final estimate counts isolated cycles. The coefficient \(1/(2\ln2)\) thus appears on the \(d^2\ln d\) scale both in the patchworking estimate and in Han and Li's lower bound for the limit inferior. In Theorem~\ref{th:main} each coordinate supplies order \(\ln D\) dyadic layers. Simple return zeros give a bound for \(\HH(D)\), hence also for \(H(D)\).
 
 Two recent preprints reach the \(D^2(\ln D)^2\) scale. Qin and Sun use two ternary filtrations of a squared-Chebyshev Hamiltonian and prove independence on Cartesian sets of perturbations under sufficiently strong anisotropy~\cite[Theorems 1.1 and 2.2, \S5]{qin}. Their hierarchical choice of coefficients is also the realization principle used here. Lu's mechanical renewal uses successive folds and new zeros of auxiliary one-dimensional periods. Its all-degree coefficient for hyperbolic cycles is \(1/8\) in units of \((\ln 2)^{-2}\), with a loss \(O(D^2\ln D)\)~\cite[Theorem 1.1]{mechanical}. In the same units the three coefficients are \(6/48,\ 9/48,\ 10/48\). The unweighted grid accounts for three quarters of the additive increase over renewal, a factor \(3/2\). The positive multiplier supplies the remaining \(1/48\), a further factor \(10/9\). Formula~\eqref{eq:main} displays the larger loss incurred by our all-degree interpolation.
 
@@ -65,9 +67,9 @@ The cutoff \(a+b\le D+1\) then determines which relations survive weighting. Mom
 Finally, on each dyadic layer a rank \(d\) yields \(d-1\) simple zeros at positive energies. Reflections identify the diagonal period on all cells of that layer up to sign. The dyadic visibility of the other perturbations allows the zeros on all selected layers to persist for a single field. This gives the integer count in Theorem~\ref{th:finite}. The separate maxima at each degree in Section~\ref{sec:comparison} measure how often the multiplier pays for its additional \(M\) degrees.
 
 \section{The grid and its first variation}\label{sec:grid}
-We use $T_n(\cos t)=\cos(nt)$ and $U_{n-1}(\cos t)=\sin(nt)/\sin t$, so $T'_n=nU_{n-1}$. Set $S=D+1$. Take $N,M\ge2$ and use either $C=1$ ($p=0$, $\kappa=0$) or $C=1-\kappa g$ ($p=1$, $0<\kappa<1/2$). Assume $N+(1+p)M\le S$. For a polynomial form $\omega=A\,dx+B\,dy$ with $\max(\deg A,\deg B)\le D$, consider
+We use $T_n(\cos t)=\cos(nt)$ and $U_{n-1}(\cos t)=\sin(nt)/\sin t$, so $T'_n=nU_{n-1}$. Set $S=D+1$. Take $N,M\ge2$ and write $C=C_p$. For $p=0$ use $C_0=1$. For $p=1$ take $C_1=1-\kappa g$, $0<\kappa<1/2$. The unweighted map is also the specialization of the weighted map at $\kappa=0$. Assume $N+(1+p)M\le S$. For a form $\omega=P_\omega\,dx+Q_\omega\,dy$ with polynomial coefficients of total degree at most $D$, consider
 \begin{equation}\label{eq:field}
- X_\mu=\bigl(Cfg'-\mu B,\;-C\lambda f'g+\mu A\bigr),\qquad
+ X_\mu=\bigl(Cfg'-\mu Q_\omega,\;-C\lambda f'g+\mu P_\omega\bigr),\qquad
  \Omega=\lambda f'g\,dx+fg'\,dy .
 \end{equation}
 Since $|g|\le1$ on $[-1,1]$, the multiplier exceeds $1/2$ on the closures of the bounded cells. Both components at \(\mu=0\) have degree $d_0=N+(1+p)M-1$. Thus \eqref{eq:field} has degree at most $D$ for every real $\mu$. For fixed nonzero $\omega$ and sufficiently small nonzero $\mu$, its actual degree is $\max(d_0,\deg\omega)$. When the two degrees coincide a nonzero top coefficient of $X_0$ stays nonzero by continuity.
@@ -88,18 +90,18 @@ In angle coordinates $H$ has positive definite Hessian, a unique minimum at $(0,
 \caption{The grid at $N=M=4$, $\lambda=\pi$. Filled squares are saddles, dots are centers and the solid curves are sampled regular levels $h=0.35,1.25$. Arrows follow the unperturbed flow on the outer ovals. At right the highlighted central cell is drawn in angle coordinates. Shading gives the extra weight $1/(1-\kappa\cos\eta)$ for $i=2$ and $\kappa=1/3$. The dashed segment is the return section.}\label{fig:cells}
 \end{figure}
 
-On a regular period annulus the time-change calculation has a simple general form. Let a smooth field $Z$ have a regular first integral $H$ there, and perturb $CZ$ by $\mu Y$ with $C>0$ and $C,Y$ smooth. Use $H$ on a transversal and let $z_h(t)$ run around the unscaled field $Z$ in time $T(h)$. The coefficient of $\mu$ in the return displacement is
+On a regular period annulus the time-change calculation has a simple general form. Let a smooth field $Z$ have a regular first integral $H$ there, and perturb $CZ$ by $\mu Y$ with $C>0$ and $C,Y$ smooth. Use $H$ on a transversal and let $z_h(t)$ run around the unscaled field $Z$ in time $T_Z(h)$. The coefficient of $\mu$ in the return displacement is
 \[
- \int_0^{T(h)}\frac{dH(Y)(z_h(t))}{C(z_h(t))}\dd t .
+ \int_0^{T_Z(h)}\frac{dH(Y)(z_h(t))}{C(z_h(t))}\dd t .
 \]
 Indeed $\dot H=\mu dH(Y)$ on the perturbed arc, and at $\mu=0$ the time element of $CZ$ is $dt/C$.
 
-For the grid, the form $C\Omega-\mu\omega$ annihilates $X_\mu$. Use the section $\eta=0$, $\xi>0$ with coordinate $h=H$. On each compact interval $I\Subset(0,\infty)$ the energy displacement is
+For the grid, \(Y=(-Q_\omega,P_\omega)\) gives \(dH(Y)=-\omega(Z)/(fg)\) by~\eqref{eq:energy}. Integration along the forward orbit of \(Z\) therefore gives \(-\int_{\rm forward}\omega/(C f g)\). Its orientation relative to \(\gamma_h\) is \(\sgn(fg)=(-1)^{j+i}\), so the signed factor \(fg\) becomes \(|fg|\). Use \(h=H\) on the section \(\eta=0,\ \xi>0\). On each compact interval \(I\Subset(0,\infty)\) this gives
 \begin{equation}\label{eq:period}
  \mathcal P_\mu(h)-h=-\mu L_C[\omega](h)+O_{C^1(I)}(\mu^2),\qquad
  L_C[\omega](h)=\oint_{\gamma_h}\frac{\omega}{C\,|fg|}.
 \end{equation}
-Write \(\Lu=L_{C\equiv1}\) for the unweighted map. The exact trajectory identity is $dH=-\mu\omega/(Cfg)$ on orbit tangents. The forward orientation cancels the sign of $fg$. To justify the remainder, enlarge \(I\) slightly inside \((0,\infty)\). The corresponding closed annular collar lies in one cell, with \(C>1/2\), \(fg\ne0\) and \(X_0\ne0\). In the chart~\eqref{eq:chart} put \(z(h)=(\arccos e^{-h/\lambda},0)\) and write \(\Phi(t,z,\mu)\) for the flow. Along one unperturbed circuit the analytic local flows compose finitely many times, so \(\Phi(t,z(h),\mu)\) is jointly real analytic near the circuit in \((t,h,\mu)\). At its return time \(T_*\) for \(h=h_*\), the equation
+Write \(\Lu=L_{C\equiv1}\) for the unweighted map. On the perturbed arc, \((C\Omega-\mu\omega)(X_\mu)=0\) and \(\Omega=-fg\,dH\) give the exact tangent identity \(dH=-\mu\omega/(C f g)\). To justify the remainder, enlarge \(I\) slightly inside \((0,\infty)\). The corresponding closed annular collar lies in one cell, with \(C>1/2\), \(fg\ne0\) and \(X_0\ne0\). In the chart~\eqref{eq:chart} put \(z(h)=(\arccos e^{-h/\lambda},0)\) and write \(\Phi(t,z,\mu)\) for the flow. Along one unperturbed circuit the analytic local flows compose finitely many times, so \(\Phi(t,z(h),\mu)\) is jointly real analytic near the circuit in \((t,h,\mu)\). At its return time \(T_*\) for \(h=h_*\), the equation
 \[
  \eta\bigl(\Phi(t,z(h),\mu)\bigr)=0
 \]
@@ -132,7 +134,7 @@ Write $\alpha=a/N$, $\beta=b/M$, $e_l=(-1)^i$ on $I_l$ ($e_1=-1$, $e_l=1$ for $l
  \frac{\sigma}{M}\frac{\sin(\alpha\xi)\cos(\beta\eta)\,d\eta}{C\cos\xi\cos\eta},\qquad
  \frac{\sigma}{N}\frac{\cos(\alpha\xi)\sin(\beta\eta)\,d\xi}{C\cos\xi\cos\eta}.
 \end{equation}
-Here $C=1-p\kappa e_l\cos\eta$. A mode from $(k',l')$ vanishes on $J_k\times I_l$ if $k'<k$ or $l'<l$, since one sine factor is zero. On its own block write $a=(N/2^k)u$, $b=(M/2^l)v$, $i=2^{l-1}i'$. Both phases are odd half-integers times $\pi$, so \eqref{eq:angles} gives the full pullback there. The sign
+Here $C_0=1$ and $C_1=1-\kappa e_l\cos\eta$. A mode from $(k',l')$ vanishes on $J_k\times I_l$ if $k'<k$ or $l'<l$, since one sine factor is zero. On its own block write $a=(N/2^k)u$, $b=(M/2^l)v$, $i=2^{l-1}i'$. Both phases are odd half-integers times $\pi$, so \eqref{eq:angles} gives the full pullback there. The sign
 \[
  \sigma=(-1)^{(u-1)/2+(v-1)/2}\,(-1)^{(j'-1)/2+(i'-1)/2}
 \]

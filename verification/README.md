@@ -1,6 +1,6 @@
 # Exact reproduction
 
-Run `python3 -B verification/verify.py` from the repository root. The entry point recomputes all three result files and compares their complete contents. Use `--part ranks` or `--part certificates` for a single group, and `--write DIR` for a separate copy of the computed results. All scientific calculations use integers, rational arithmetic or prime fields. The programs need no network, CAS, source archive or plotting package.
+Run `python3 -B verification/verify.py` from the package root. The entry point recomputes all three result files and compares their complete contents. Use `--part ranks` or `--part certificates` for a single group, and `--write DIR` for a separate copy of the computed results. All scientific calculations use integers, rational arithmetic or prime fields. The programs need no network, CAS, source archive or plotting package.
 
 ## Periods and kernels
 
@@ -26,7 +26,7 @@ For each of two primes the program tests the nine blocks at $N=M=8,D=23$, two no
 2. For the unweighted square at $D=2m2^r-1$ it compares the block sum with the first closed polynomial in the square-grid corollary.
 3. For the weighted square at $D=3m2^r-1$ it makes the same comparison with the second polynomial. Each symmetric test also checks the exact triangle count, including equality on its diagonal.
 
-[The certificate results](results/certificates.json) give the 72 symmetric counts for $m=1,2,3,5$ and $r=1,\ldots,9$. They also include the integer-rounded witnesses for both multiplier choices in Theorem 1.1. For every budget from 15 through 20,000 the program checks the binary scale and the actual field degree in each family. Through degree 350 it compares each rounded certificate with the separate maximum.
+[The certificate results](results/certificates.json) give the 72 symmetric counts for $m=1,2,3,5$ and $r=1,\ldots,9$. They also include the integer-rounded witnesses for both multiplier choices in Theorem 1.1. For every budget from 15 through 20,000 the program checks the binary scale and the degree of each square witness against its budget. At a budget of 31, for example, the rounded weighted square has degree 23. Through degree 350 it compares each rounded certificate with the separate maximum.
 
 [The finite ledger](results/degrees.csv) gives the unweighted and weighted maxima at each total degree from 3 through 350. The columns headed `unweighted` and `weighted` each have their own witness `N,M`. Ties use increasing grid orders. The leading `grid` column takes the larger of the two maxima with precedence given to the unweighted family in a tie. An empty weighted entry means that no even grid fits. The program also checks the replication envelope of each grid family. The unweighted count exceeds the positive mechanical certificate at all 346 degrees from 5 through 350. Including the zero mechanical entries at 3 and 4 gives 348 strict inequalities in the full ledger. Degree 79 is the first strict weighted win over the unweighted family, with 25,947 and 24,879 cycles, respectively.
 
