@@ -1,10 +1,12 @@
-# Carrier-weighted Darboux polycycle grids
+# First-return periods on Darboux grids and hyperbolic limit cycles of polynomial fields
 
-Haibo Lu, Shanghai Institute of Technology. English manuscript R1.
+Haibo Lu, Shanghai Institute of Technology. English manuscript R2.
 
-[Read the paper](manuscript/main.pdf). The complete proof, both figures and the finite comparison are in the paper. [TeX entry point](manuscript/main.tex) · [Bibliography](manuscript/references.bib) · [Verification methods and results](verification/README.md).
+[Paper](manuscript/main.pdf) · [TeX entry point](manuscript/main.tex) · [Bibliography](manuscript/references.bib) · [Exact reproduction](verification/README.md) · [Degree-by-degree bounds and grid witnesses](verification/results/degrees.csv).
 
-From the repository root, check the scientific files and reproduce the exact calculations with Python 3.9 or later. These commands use only the standard library.
+The paper proves the rank and kernel formulas on dyadic blocks, realizes their simple period zeros in one field and gives the two all-degree estimates. The finite ledger records separate maxima for the unweighted and weighted grids.
+
+Run from this directory using Python 3.9 or later. All exact calculations use the standard library.
 
 ```sh
 sha256sum -c SHA256SUMS
@@ -14,18 +16,19 @@ python3 -B verification/negative_controls.py
 python3 -B -O verification/negative_controls.py
 ```
 
-For the explicit all-degree choice, supply an integer total degree budget of at least 15.
+For a single total degree budget of at least 15, compute the square-grid witnesses used in the all-degree proof.
 
 ```sh
+python3 -B verification/certificates.py 1000000 --unweighted
 python3 -B verification/certificates.py 1000000
 ```
 
-Build the manuscript with pdfLaTeX and BibTeX. The vector figure PDFs are included. To redraw them, run `python3 manuscript/figures/draw.py` with NumPy and Matplotlib installed. To build the paper using the included figures, run the following from the repository root.
+To build the paper with the supplied figures, run the following from this directory.
 
 ```sh
 mkdir -p build
 cd manuscript
-SOURCE_DATE_EPOCH=1795651200 latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=../build main.tex
+SOURCE_DATE_EPOCH=1795737600 latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=../build main.tex
 ```
 
-The rebuilt PDF is `build/main.pdf`. The manifest identifies the distributed bytes. Font and TeX installations can affect newly built PDFs.
+The result is `build/main.pdf`. Both figures can also be redrawn with `python3 manuscript/figures/draw.py` from the bundle root using NumPy and Matplotlib. The manifest covers the supplied PDF, source, figure files, verification programs, results and README files.

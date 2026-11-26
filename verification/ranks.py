@@ -196,6 +196,7 @@ def test_block(n, m, k, ell, s, rows, prime, augmented=True):
             if a < n:
                 border.append(unweighted["F",a,b])
         coef = f.ratio(n*lam.numerator, lam.denominator)
+        border_forms = len(border)
         for a,b in high:
             sign = 1 if n>a else -1
             e1, e2 = (unweighted["E",x,b] for x in (a+n, abs(a-n)))
@@ -205,7 +206,8 @@ def test_block(n, m, k, ell, s, rows, prime, augmented=True):
                            for u,v,w,z in zip(e1,e2,f1,f2)])
         measured = rank(border, prime)
         require(measured == len(border), "augmented Taylor matrix")
-        data.update(augmented=measured, high_pairs=len(high), shared_upper_x=clashes)
+        data.update(augmented=measured, border_pairs=len(basis_pairs), border_forms=border_forms,
+                    high_pairs=len(high), shared_upper_x=clashes)
     return {"N": n, "M": m, "k": k, "l": ell, "S": s, "rows": rows, "prime": prime, **data}
 
 
@@ -215,8 +217,9 @@ def run():
                 for n,m,s,rows in [(2,2,6,12), (4,4,12,38), (4,2,8,20), (6,2,10,20)]
                 for k in range(1,len(steps(n))+1) for l in range(1,len(steps(m))+1)]
     example = next(x for x in rational if (x["N"], x["M"], x["k"], x["l"]) == (4,4,2,2))
-    require((example["unweighted"],example["weighted"],example["augmented"],
-             example["high_pairs"],example["shared_upper_x"]) == (22,33,18,4,1),
+    require((example["unweighted"], example["weighted"], example["augmented"],
+             example["border_pairs"], example["border_forms"], example["high_pairs"],
+             example["shared_upper_x"], example["weighted_kernel"]) == (22,33,18,10,14,4,1,9),
             "worked collision block")
     lam = Fraction(101,37)
     visible = jets(2,2,1,1,6,Fraction(1,3),3,0)

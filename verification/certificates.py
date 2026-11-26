@@ -52,19 +52,21 @@ def closed_counts(q, depth, multiplier):
     return pure, weighted
 
 
-def integer_witness(degree):
-    """A square weighted grid for the explicit all-degree choice (D >= 15)."""
+def integer_witness(degree, carrier=1):
+    """The all-degree square construction with multiplier 1 or 1-kappa*T_M."""
     require(degree >= 15, "the binary-length choice is specified for D >= 15")
+    require(carrier in (0, 1), "choose multiplier 0 or 1")
     budget = degree + 1
     bits = budget.bit_length()
     r = (budget // bits).bit_length() - 1
     q = 1 << r
-    m = budget // (3*q)
+    cost = 2 + carrier
+    m = budget // (cost*q)
     n = q*m
     require(q*bits <= budget < 2*q*bits and m >= 1 and r >= 1, "binary scale selection")
-    require(3*n <= budget < 3*(n+q), "rounded grid degree")
-    return {"D": degree, "grid_degree": 3*n-1, "N": n, "M": n, "q": q, "r": r, "m": m,
-            "cycles": closed_counts(q, r, m)[1]}
+    require(cost*n <= budget < cost*(n+q), "rounded grid degree")
+    return {"D": degree, "carrier": carrier, "grid_degree": cost*n-1,
+            "N": n, "M": n, "q": q, "r": r, "m": m, "cycles": closed_counts(q, r, m)[carrier]}
 
 
 def check_closed():
@@ -100,8 +102,8 @@ def check_closed():
 
 
 def best_grids(limit):
-    """Exhaust even grids and both carriers. Keep the first witness in a tie."""
-    best = [(0, 0, 0, 0)] * (limit + 1)
+    """A separate maximum for each multiplier. None means no admissible grid."""
+    best = [[None] * (limit + 1) for _ in (0, 1)]
     last = limit + 1
     for p in (0, 1):
         for n in range(2, last - 1, 2):
@@ -120,8 +122,9 @@ def best_grids(limit):
                                 rank = 2*table[budget] - table[budget-n] - table[budget-m]
                             totals[budget] += weight * max(0, rank - 1)
                 for budget in range(first, last + 1):
-                    if totals[budget] > best[budget-1][0]:
-                        best[budget-1] = (totals[budget], p, n, m)
+                    incumbent = best[p][budget-1]
+                    if incumbent is None or totals[budget] > incumbent[0]:
+                        best[p][budget-1] = (totals[budget], n, m)
     return best
 
 
@@ -130,9 +133,19 @@ def direct_grid(degree, n, m, p):
     for u in steps(n):
         for v in steps(m):
             # Direct enumeration, independent of the cumulative-table algorithm.
-            def count(x):
-                return len(pairs(u, v, x))
-            total += u*v * max(0, block_rank(count, degree+1, n, m, p) - 1)
+            def border(modes):
+                return sum(int(a < n) + int(b < m) for a, b in modes)
+
+            budget = degree+1
+            modes = pairs(u, v, budget)
+            if p:
+                smaller = pairs(u, v, budget-m)
+                unweighted_nullity = 2*len(smaller) - border(smaller)
+                tangent_nullity = sum(b < m for a, b in pairs(u, v, budget-n-m))
+                rank = 2*len(modes) - unweighted_nullity - tangent_nullity
+            else:
+                rank = border(modes)
+            total += u*v * max(0, rank - 1)
     return total
 
 
@@ -193,12 +206,19 @@ def run():
             table = lattice_table(u, v, 40)
             require(all(table[x] == len(pairs(u, v, x)) for x in range(41)),
                     f"pair counter with steps {(u, v)}")
-    grid, other = best_grids(limit), comparison_ledgers(limit)
+    by_family, other = best_grids(limit), comparison_ledgers(limit)
+    grid = [None] * (limit+1)
+    for d in range(3, limit+1):
+        unweighted, weighted = by_family[0][d], by_family[1][d]
+        p = int(weighted is not None and weighted[0] > unweighted[0])
+        value, n, m = by_family[p][d]
+        grid[d] = (value, p, n, m)
     for d in range(3, 25):
-        expected = max(direct_grid(d, n, m, p)
-                       for p in (0, 1) for n in range(2, d, 2)
-                       for m in range(2, (d+1-n)//(1+p)+1, 2))
-        require(expected == grid[d][0], f"exhaustive small grid search at {d}")
+        for p in (0, 1):
+            candidates = ((direct_grid(d, n, m, p), n, m) for n in range(2, d, 2)
+                          for m in range(2, (d+1-n)//(1+p)+1, 2))
+            expected = max(candidates, key=lambda entry: entry[0], default=None)
+            require(expected == by_family[p][d], f"exhaustive search at {(d, p)}")
     historical_rows = {11: (153,80,0,72), 23: (833,440,0,676),
                        31: (1801,1320,80,1940), 63: (9065,7912,320,12756),
                        103: (23029,24792,2240,34948), 319: (280073,394472,40256,652116)}
@@ -212,29 +232,46 @@ def run():
     require(mechanical(5) == other[5][3] == 4, "mechanical degree-five certificate")
     require(all(other[d][3] == mechanical(d) for d in range(3, limit+1)),
             "mechanical envelope differs from native output")
-    wins = sum(grid[d][0] > other[d][3] for d in range(5, limit+1))
-    require(wins == 346, "finite mechanical comparison")
+    pure_wins = sum(by_family[0][d][0] > other[d][3] > 0 for d in range(5, limit+1))
+    all_pure_wins = sum(by_family[0][d][0] > other[d][3] for d in range(3, limit+1))
+    first_weighted = next(d for d in range(5, limit+1) if by_family[1][d][0] > by_family[0][d][0])
+    require(pure_wins == 346 and all_pure_wins == 348 and first_weighted == 79, "separate finite degree comparisons")
+    for p, first in ((0, 3), (1, 5)):
+        for d in range(first, limit+1):
+            copied = max(by_family[p][j][0]*((d+1)//(j+1))**2 for j in range(first, d+1))
+            require(copied == by_family[p][d][0], f"grid replication bound at {(d, p)}")
+    for p, witness in enumerate(((24879, 32, 32), (25947, 16, 32))):
+        value, n, m = witness
+        require(witness == by_family[p][79] and value == direct_grid(79, n, m, p),
+                f"degree 79 witness, multiplier {p}")
     out = StringIO()
     writer = csv.writer(out, lineterminator="\n")
     writer.writerow(["D", "grid", "carrier", "N", "M", "classical", "two_source",
-                     "Qin_Sun", "mechanical"])
+                     "Qin_Sun", "mechanical", "unweighted", "unweighted_N", "unweighted_M",
+                     "weighted", "weighted_N", "weighted_M"])
     for d in range(3, limit+1):
         val, p, n, m = grid[d]
         c, t, q, mech = other[d]
-        writer.writerow([d, val, p, n, m, c, t, q if q else "", mech])
-    for d in range(15, 20001):
-        witness = integer_witness(d)
-        if d <= limit:
-            require(witness["cycles"] <= grid[d][0], f"rounded witness at {d}")
+        writer.writerow([d, val, p, n, m, c, t, q if q else "", mech,
+                         *by_family[0][d], *(by_family[1][d] or ("", "", ""))])
+    for p in (0, 1):
+        for d in range(15, 20001):
+            witness = integer_witness(d, p)
+            if d <= limit:
+                require(witness["cycles"] <= by_family[p][d][0], f"rounded witness at {(d, p)}")
     stats = {"symmetric_certificates": symmetric, "scan_degrees": [3, limit],
              "rounded_witness_budgets_checked": [15, 20000],
-             "rounded_witness_examples": [integer_witness(d) for d in (31, 103, 1000, 10000,
-                                                                        10**6, 10**9)],
-             "strict_grid_over_mechanical_5_to_350": wins, "mechanical_D5": mechanical(5)}
+             "rounded_witness_examples": [integer_witness(d,p) for d in (31,103,1000,10000,10**6,10**9)
+                                          for p in (0,1)],
+             "strict_unweighted_over_mechanical_5_to_350": pure_wins,
+             "strict_unweighted_over_mechanical_3_to_350": all_pure_wins,
+             "first_strict_weighted_over_unweighted": first_weighted, "mechanical_D5": mechanical(5)}
     return stats, out.getvalue()
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Compute a weighted square-grid witness.")
+    parser = argparse.ArgumentParser(description="Compute a square-grid witness at fixed total degree.")
     parser.add_argument("degree", type=int, help="total degree budget, at least 15")
-    print(json.dumps(integer_witness(parser.parse_args().degree), indent=2))
+    parser.add_argument("--unweighted", action="store_true", help="use the constant multiplier")
+    args = parser.parse_args()
+    print(json.dumps(integer_witness(args.degree, 0 if args.unweighted else 1), indent=2))

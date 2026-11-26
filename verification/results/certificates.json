@@ -1,4 +1,5 @@
 {
+  "first_strict_weighted_over_unweighted": 79,
   "mechanical_D5": 4,
   "rounded_witness_budgets_checked": [
     15,
@@ -7,8 +8,20 @@
   "rounded_witness_examples": [
     {
       "D": 31,
+      "M": 16,
+      "N": 16,
+      "carrier": 0,
+      "cycles": 720,
+      "grid_degree": 31,
+      "m": 4,
+      "q": 4,
+      "r": 2
+    },
+    {
+      "D": 31,
       "M": 8,
       "N": 8,
+      "carrier": 1,
       "cycles": 480,
       "grid_degree": 23,
       "m": 2,
@@ -17,8 +30,20 @@
     },
     {
       "D": 103,
+      "M": 48,
+      "N": 48,
+      "carrier": 0,
+      "cycles": 14796,
+      "grid_degree": 95,
+      "m": 6,
+      "q": 8,
+      "r": 3
+    },
+    {
+      "D": 103,
       "M": 32,
       "N": 32,
+      "carrier": 1,
       "cycles": 17168,
       "grid_degree": 95,
       "m": 4,
@@ -27,8 +52,20 @@
     },
     {
       "D": 1000,
+      "M": 448,
+      "N": 448,
+      "carrier": 0,
+      "cycles": 5323311,
+      "grid_degree": 895,
+      "m": 7,
+      "q": 64,
+      "r": 6
+    },
+    {
+      "D": 1000,
       "M": 320,
       "N": 320,
+      "carrier": 1,
       "cycles": 6888375,
       "grid_degree": 959,
       "m": 5,
@@ -37,8 +74,20 @@
     },
     {
       "D": 10000,
+      "M": 4608,
+      "N": 4608,
+      "carrier": 0,
+      "cycles": 1279390383,
+      "grid_degree": 9215,
+      "m": 9,
+      "q": 512,
+      "r": 9
+    },
+    {
+      "D": 10000,
       "M": 3072,
       "N": 3072,
+      "carrier": 1,
       "cycles": 1430936028,
       "grid_degree": 9215,
       "m": 6,
@@ -47,8 +96,20 @@
     },
     {
       "D": 1000000,
+      "M": 491520,
+      "N": 491520,
+      "carrier": 0,
+      "cycles": 40647849983775,
+      "grid_degree": 983039,
+      "m": 15,
+      "q": 32768,
+      "r": 15
+    },
+    {
+      "D": 1000000,
       "M": 327680,
       "N": 327680,
+      "carrier": 1,
       "cycles": 45271643750300,
       "grid_degree": 983039,
       "m": 10,
@@ -57,8 +118,20 @@
     },
     {
       "D": 1000000000,
+      "M": 486539264,
+      "N": 486539264,
+      "carrier": 0,
+      "cycles": 102144876532159478967,
+      "grid_degree": 973078527,
+      "m": 29,
+      "q": 16777216,
+      "r": 24
+    },
+    {
+      "D": 1000000000,
       "M": 318767104,
       "N": 318767104,
+      "carrier": 1,
       "cycles": 109716060810873142935,
       "grid_degree": 956301311,
       "m": 19,
@@ -70,7 +143,8 @@
     3,
     350
   ],
-  "strict_grid_over_mechanical_5_to_350": 346,
+  "strict_unweighted_over_mechanical_3_to_350": 348,
+  "strict_unweighted_over_mechanical_5_to_350": 346,
   "symmetric_certificates": [
     {
       "D": 3,

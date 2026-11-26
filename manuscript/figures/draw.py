@@ -85,7 +85,7 @@ def cells():
     angle_ax.set_title("Central cell  $(j,i)=(2,2)$", fontsize=10)
     bar = fig.colorbar(ScalarMappable(norm=norm, cmap=cmap), ax=angle_ax,
                        ticks=[1, 1.25, 1.5], shrink=.70, aspect=18, pad=.08)
-    bar.set_label("reciprocal carrier", fontsize=8)
+    bar.set_label("reciprocal multiplier", fontsize=8)
     fig.savefig(OUTPUT/"cells.pdf", metadata=PDF_META)
     plt.close(fig)
 
@@ -106,15 +106,17 @@ def frequencies():
                       ha="center", va="center", fontsize=9,
                       bbox=dict(facecolor="white", edgecolor="none", pad=.5))
             if a+b <= 8 and retained:
-                right.plot(a, b, "o", mfc="white", mec=BLUE, ms=7, mew=1.2)
+                right.plot(a, b, "o", mfc=BLUE if retained == 2 else "white",
+                           mec=BLUE, ms=6.6, mew=1.1)
     high = [(a+4,b) for a in range(1, 9, 2) for b in (1, 3) if 4 < a+b <= 8]
     right.plot(*zip(*high), ls="", marker="D", color=RED, ms=5.8)
     right.plot([7,7], [1,3], ":", lw=1.4, color=INK, zorder=0)
-    right.plot([], [], "o", mfc="white", mec=BLUE, ms=6, label="basis at $a+b\\leq 8$")
-    right.plot([], [], "D", color=RED, ms=5, label="upper shifted pair")
+    right.plot([], [], "o", mfc="white", mec=BLUE, ms=6, label="one border form")
+    right.plot([], [], "o", mfc=BLUE, mec=BLUE, ms=6, label="two border forms")
+    right.plot([], [], "D", color=RED, ms=5, label="one added form")
     right.legend(loc="upper right", fontsize=7, frameon=False, handlelength=1.1)
-    left.set_title("Unweighted rank  22", fontsize=10)
-    right.set_title("Weighted rank  33", fontsize=10)
+    left.set_title("Unweighted periods (rank 22)", fontsize=10)
+    right.set_title("Augmented test (14 + 4 forms)", fontsize=10)
     fig.savefig(OUTPUT/"frequencies.pdf", metadata=PDF_META)
     plt.close(fig)
 

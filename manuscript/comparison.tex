@@ -1,0 +1,63 @@
+\section{Comparisons at the same total degree}\label{sec:comparison}
+
+\subsection{Subsequences and all-degree estimates}
+With \(q=3^r\), \(r\ge2\), Qin and Sun's Theorem~1.1 gives the hyperbolic-cycle seeds
+\begin{equation}\label{eq:ternary}
+ d_r=4q-5,\qquad b_Q(d_r)=4r^2q^2/9-(q-1)^2 .
+\end{equation}
+The squared-Chebyshev Hamiltonian has degree \(2q\). The perturbation sets the final field cost \(d_r\), giving leading coefficient \(1/[36(\ln3)^2]\) on this subsequence. Using the last available seed for each \(D\ge31\) gives the coefficient \(1/[324(\ln3)^2]\), with loss \(O(D^2\ln D)\), in their Corollary~1.2~\cite[Theorem 1.1, Corollary 1.2 and \S6]{qin}. The authors' September software release records the earlier asymptotic result. Release 1.1.0 accompanying the October arXiv paper retains the subsequence and gives the explicit all-degree corollary~\cite{qsreleases}.
+
+For a finite family of \(L\) cycles at degree \(d\), the Chebyshev pullback of Eshkobilov, Kadyrov and Mamayusupov gives \(m^2L\) cycles at degree at most \(m(d+1)-1\)~\cite[Theorem 1]{replication}. Indeed, after affine localization, \((T_m(x),T_m(y))\) maps each branch rectangle diffeomorphically onto the same square. Multiplying the two pulled-back components \(P(T_m(x),T_m(y)),Q(T_m(x),T_m(y))\) by \(T'_m(y),T'_m(x)\), respectively, gives the stated degree and a time change of constant sign on each branch. The return map is conjugate to the original or its inverse, so this operation also preserves hyperbolicity. Applying it to~\eqref{eq:ternary} with \(q\asymp D/\ln D\) recovers the coefficient \(1/[36(\ln3)^2]\) at every sufficiently large degree with the \(-2\ln D\ln\ln D\) correction, as shown in Lu's Proposition~5.2~\cite{mechanical}. The mechanical preprint's Theorem~1.1 obtains \(1/[8(\ln2)^2]\) at every sufficiently large degree with loss \(O(D^2\ln D)\). These results and Theorem~\ref{th:main} all count hyperbolic cycles of real autonomous polynomial fields.
+
+\begin{table}[tb]
+\caption{Cycle certificates at total degree at most \(D\). The first two columns after \(D\) optimize the unweighted and weighted grids separately. Classical counts ordinary limit cycles. Every other column counts hyperbolic cycles. A dash means the family has no admissible seed.}\label{tab:finite}
+\centering\small
+\begin{tabular}{r rr rrrr}
+\toprule
+ \(D\)&\(G_0(D)\)&\(G_1(D)\)&Classical&Two-source&Ternary&Mechanical\\
+\midrule
+3&3&---&13&0&---&0\\
+5&11&8&37&0&---&4\\
+11&140&120&153&80&---&72\\
+23&1,161&1,073&833&440&---&676\\
+31&2,967&2,495&1,801&1,320&80&1,940\\
+78&24,399&20,799&10,358&12,664&320&17,420\\
+79&24,879&25,947&12,545&13,512&320&20,308\\
+95&48,071&47,783&21,705&20,648&720&30,676\\
+191&271,503&275,535&104,681&114,152&2,880&176,724\\
+319&793,839&875,631&280,073&394,472&40,256&652,116\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Finite grid counts}
+For \(p=0,1\) let \(G_p(D)\) be the maximum of~\eqref{eq:gridcount} over admissible even \(N,M\) for this \(p\). Use full dyadic depths \(r=\nu_2(N),s=\nu_2(M)\), since shorter depths omit nonnegative summands. The unweighted family starts at \(D=3\), the weighted family at \(D=5\).
+
+For comparison families with seed bounds \(b(d)\), write
+\[
+ \clos[b](D)=\max_{d\le D}b(d)\left\lfloor\frac{D+1}{d+1}\right\rfloor^2 .
+\]
+This permits both replication and unused degree. Each grid family already includes this rule. Indeed scaling \(N,M\) by \(m\) and \(S\) by \(m\) scales both frequency sets at the original depths by \(m\). All ranks at those depths are identical, and each layer has \(m^2\) times as many cells. Any additional depths add nonnegative terms. For two nested budgets one may choose the same \(\kappa\) outside both finite exceptional sets, so enlarging \(D\) can only increase or preserve each rank. Thus \(\clos[G_p]=G_p\) wherever the family is available.
+
+Table~\ref{tab:finite} gives the two grid counts against the four families of Lu's finite-degree supplement~\cite[\S\S1--3]{supplement}. Each comparison column applies \(\clos\) to the following seeds.
+
+\smallskip\noindent\emph{Classical.}
+A Han--Li state \((d,r,L)\) has property \(T(r)\) and \(L\) odd-multiplicity limit cycles. Begin with
+\((3,1,13),(4,1,20),(5,2,28),(6,2,35)\).
+The children have degrees \(2d+1,2d+2\), common index \(2r+1\), and counts \(4L+(4r+1)d-2r,\ 4L+(4r+1)d\), respectively~\cite[Lemma 2.7 and Theorem 2.1]{hanli}. Take the larger of the native tree count and the direct seed at each degree. The direct seeds include the classical \(H(2)\ge4\) recalled in~\cite[\S2]{reversible}. Prohens and Torregrosa give \(28,37,53,74,96,120,142\) at \(d=4,\ldots,10\), and \(212,384,568,1184,1536,1920,2272\) at \(d=13,17,21,31,35,39,43\)~\cite[Theorems 1 and 2(a)]{reversible}. Only the four property-\(T\) states and their descendants feed the tree. The column counts isolated cycles for \(H\).
+
+\smallskip\noindent\emph{Two-source and ternary.}
+Lu's two-source Proposition~4.1 takes \(L\) selected hyperbolic cycles at degree at most \(u\ge3\) to \(4L+4(u+2)(u+1)\) at degree at most \(2u+5\)~\cite{twosource}. The specified empty-seed strategy sets \(b_T(d)=0\) for \(d\le10\), then \(b_T(d)=4b_T(u)+4(u+2)(u+1)\) for \(u=\lfloor(d-5)/2\rfloor\) and \(d\ge11\). The ternary seeds are exactly~\eqref{eq:ternary}.
+
+\smallskip\noindent\emph{Mechanical.}
+Set \(b_M(d)=B(\lfloor(d+1)/2\rfloor)\), where \(B(1)=0\). For \(u\ge2\), \(j=\lfloor\log_2u\rfloor\) and \(h_k=\lfloor u/2^{k+1}\rfloor\), the binary-prefix recurrence in the mechanical preprint~\cite[Proposition 3.3]{mechanical} reads
+\[
+ B(u)=4B(\lfloor u/2\rfloor)
+     +4\sum_{k=0}^{j-1}2^k\bigl[h_k(u-2^kh_k)-1\bigr].
+\]
+In particular \(B(3)=4\), the entry at \(D=5\). The last three comparison columns count hyperbolic cycles.
+
+At \(D=5\) a \(2\times4\) unweighted grid gives eleven cycles, and a \(2\times2\) weighted grid gives eight. Both are below the published \(H(5)\ge37\) from reversible centers~\cite[Theorem 1]{reversible}. The unweighted count exceeds mechanical renewal at all 346 degrees \(5\le D\le350\) where the mechanical certificate is positive. At \(D=3,4\) the respective entries are three and zero, so the strict inequality holds on all 348 ledger rows. The first strict inequality \(G_1(D)>G_0(D)\) occurs at \(D=79\). The witnesses are \((N,M)=(16,32)\) for \(G_1(79)=25{,}947\) and \((32,32)\) for \(G_0(79)=24{,}879\). At \(D=95\) the ordering reverses. The maxima and crossing refer to these two grid families under the stated degree constraint. The estimates for \(\HH\) and \(H\) allow other fields and other positive multipliers.
+
+\smallskip\noindent\emph{Reproduction.}
+In the accompanying source bundle, \path{verification/results/degrees.csv} lists all 348 degree rows with a witness for each available grid. The integer and period-rank calculations are reproduced from the bundle root with \texttt{python3 verification/verify.py}. The methods and choices of Taylor order, parameters and prime fields are in \path{verification/README.md}. The analytic separation in Sections~\ref{sec:pure} and~\ref{sec:carrier} proves the rank in arbitrary admissible degrees.

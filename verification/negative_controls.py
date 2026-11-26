@@ -24,22 +24,26 @@ def main():
     # Ten Taylor rows cannot witness the unweighted rank 22. The rank checker must fail.
     expect_failure(["-c", "from ranks import test_block; test_block(4,4,2,2,12,10,0)"],
                    "Taylor rank (4, 4, 2, 2, 12, 0, 0): 10 vs 22")
-    # The full normal entry point reads the tampered D=5 entry after recomputing the ledger.
+    # Alter a published comparator, then a losing grid entry with the maximum intact.
     with tempfile.TemporaryDirectory() as directory:
         dst = Path(directory)
         original = HERE/"results"
         (dst/"certificates.json").write_bytes((original/"certificates.json").read_bytes())
         rows = list(csv.DictReader(io.StringIO((original/"degrees.csv").read_text())))
-        row = next(r for r in rows if r["D"] == "5")
-        if row["mechanical"] != "4":
-            raise ValueError("expected clean mechanical degree-five fixture")
-        row["mechanical"] = "0"
-        with (dst/"degrees.csv").open("w", newline="") as handle:
-            writer = csv.DictWriter(handle, fieldnames=list(row), lineterminator="\n")
-            writer.writeheader()
-            writer.writerows(rows)
-        expect_failure(["verify.py", "--part", "certificates", "--reference", str(dst)],
-                       "degrees.csv differs from the recomputed result")
+        for degree, field, clean, replacement in (("5", "mechanical", "4", "0"),
+                                                  ("95", "weighted", "47783", "48071")):
+            row = next(r for r in rows if r["D"] == degree)
+            if row[field] != clean:
+                raise ValueError(f"unexpected clean {field} entry at degree {degree}")
+            row[field] = replacement
+            with (dst/"degrees.csv").open("w", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=list(row), lineterminator="\n")
+                writer.writeheader()
+                writer.writerows(rows)
+            print(f"altered {field} at D={degree} from {clean} to {replacement}")
+            expect_failure(["verify.py", "--part", "certificates", "--reference", str(dst)],
+                           "degrees.csv differs from the recomputed result")
+            row[field] = clean
     print(f"negative controls passed (optimization level {sys.flags.optimize})")
 
 

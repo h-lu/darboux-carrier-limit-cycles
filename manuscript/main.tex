@@ -1,14 +1,16 @@
 \documentclass[11pt,a4paper]{amsart}
 \ifdefined\pdftrailerid\pdftrailerid{}\fi
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,microtype,mathtools,amssymb,booktabs,graphicx}
+\usepackage{lmodern,mathtools,amssymb,booktabs,graphicx}
+\usepackage[expansion=false]{microtype}
 \usepackage[margin=28mm,top=28mm,bottom=29mm]{geometry}
-\usepackage[hidelinks,pdfauthor={Haibo Lu},pdftitle={Carrier-weighted Darboux polycycle grids and exact two-variable Laplace rank}]{hyperref}
+\usepackage[hidelinks,pdfauthor={Haibo Lu},pdftitle={First-return periods on Darboux grids and hyperbolic limit cycles of polynomial fields}]{hyperref}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \numberwithin{equation}{section}
+\newcommand{\Lu}{L_{\mathrm u}}
 \newcommand{\HH}{H_{\mathrm{hyp}}}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\CC}{\mathbb C}
@@ -21,41 +23,46 @@
 \newcommand{\sgn}{\operatorname{sgn}}
 \newcommand{\Res}{\operatorname{Res}}
 \newcommand{\clos}{\mathcal E}
-\title[Carrier-weighted Darboux polycycle grids]{Carrier-weighted Darboux polycycle grids and exact two-variable Laplace rank}
+\title[First-return periods on Darboux grids]{First-return periods on Darboux grids and hyperbolic limit cycles of polynomial fields}
 \author{Haibo Lu}
 \address{Shanghai Institute of Technology}
 \date{}
 \subjclass[2020]{34C07, 34C05, 37G15}
 \keywords{Polynomial vector field, hyperbolic limit cycle, Darboux first integral, Melnikov function, Laplace transform}
+\setlength{\emergencystretch}{1em}
 \begin{document}
 \begin{abstract}
-A polynomial multiplier positive on a period annulus preserves its periodic orbits.
-If only the unperturbed field is multiplied, the reciprocal multiplier enters the first variation of its return map. We use this freedom on a grid of heteroclinic rectangles whose sides are zeros of two Chebyshev polynomials. For a carrier of degree equal to the vertical grid order, we determine the kernel of the weighted period map on each dyadic frequency block. The rank calculation separates frequency pairs in two Laplace variables, including modes with coincident poles in one variable. One polynomial perturbation then produces hyperbolic limit cycles in the interiors of the rectangles. For every sufficiently large total degree budget $D$, the resulting lower bound has leading term $5D^2(\ln D)^2/[24(\ln 2)^2]$ and an explicit loss of order $D^2\ln D\ln\ln D$. We also give integer certificates at finite degrees.
+On a rectangular grid of invariant lines, a polynomial multiplier positive throughout the bounded cells preserves their periodic orbits. Its reciprocal weights the first variation of the return map along each orbit. We compute the ranks of these first-return periods for the constant multiplier and for \(1-\kappa T_M(y)\) at generic strength \(0<\kappa<1/2\). Ordinary polynomial degree imposes a triangular cutoff on the Chebyshev indices. At any fixed transcendental anisotropy \(\lambda>1\), a dependence of periods lifts to an identity in two independent Laplace variables. Separating the two frequency indices identifies the weighted kernel even when different modes have the same horizontal pole. One polynomial perturbation realizes the resulting simple zeros as hyperbolic limit cycles on many annuli simultaneously. For every sufficiently large degree budget \(D\), the unweighted and weighted constructions give respective leading coefficients \(3/16\) and \(5/24\) in units of \(D^2(\ln D)^2/(\ln 2)^2\). We give the lower-order loss and separate integer bounds for the two constructions.
 \end{abstract}
 \maketitle
 
-\section{The cost of changing a return integral}
+\section{First-return periods at a prescribed degree}
 
-Consider an annulus filled by periodic orbits of an integrable vector field. Multiplying the field by a positive scalar function $C$ changes the time spent on each arc. If a polynomial perturbation is then added, its first-order effect over one turn is integrated with weight $1/C$. Two forms whose periods agreed before the change can therefore give independent first variations on the very same ovals. For polynomial fields this freedom has a price. Each degree spent on $C$ is a degree that the unperturbed field and its multiplier must share.
+On a period annulus, a small polynomial perturbation displaces the energy \(h\) by a first-order period integral. Multiplying the integrable field by a positive function \(C\) preserves the ovals and weights that integral by \(1/C\). This is the Poincar\'e--Pontryagin formula~\cite[\S1]{gavrilov}. For a Darboux first integral it gives a pseudo-Abelian integral~\cite[\S1]{firstdarboux}. Which periods remain independent if both the multiplied field and the perturbation must fit in a prescribed degree?
 
-We study that trade on a rectangular grid. The two polynomials $f(x)=T_N(x)$ and $g(y)=T_M(y)$ define the vertical and horizontal saddle connections of the field $(fg',-\lambda f'g)$, where $\lambda>1$. Inside a bounded rectangle the ovals are the curves $|f|^\lambda|g|=\mathrm{constant}$. The field has degree $N+M-1$. With the carrier $C=1-\kappa g$, the cost rises to $N+2M-1$, while a perturbing one-form of degree $D$ can still use every admissible pair of Chebyshev indices $a+b\le D+1$. The question is which of those directions survive integration. For example, with $N=M=4$ and $D=11$, both fields admit the same 42 forms in the block with odd indices. Its rank rises from 22 to 33. This gain on one block is compatible with the choices required on the other rectangles.
+The lines \(f(x)=0,\ g(y)=0\), with \(f=T_N,\ g=T_M\) Chebyshev polynomials, enclose heteroclinic rectangles of the field \(Z=(fg',-\lambda f'g)\). For \(\lambda>1\) the ovals satisfy \(|f|^\lambda|g|=\mathrm{constant}\). Write \(C_p=1-p\kappa g\), with \(0<\kappa<1/2\) when \(p=1\). The field \(Z\) has degree \(N+M-1\), while \((1-\kappa g)Z\) has degree \(N+2M-1\). The multiplier can make more periods independent, at the cost of \(M\) degrees otherwise available for the grid.
 
-Let $\HH(D)$ be the supremum of the sizes of finite sets of distinct hyperbolic limit cycles of one real autonomous planar polynomial field $X=(P,Q)$ with $\deg X=\max(\deg P,\deg Q)\le D$. Both degrees are total degrees in $(x,y)$. Hyperbolicity means that the return multiplier has modulus different from one. Counting all isolated periodic orbits defines $H(D)\ge\HH(D)$. All unmarked logarithms below are natural.
+Let \(\HH(D)\) be the supremum of the sizes of finite families of hyperbolic limit cycles of one real autonomous planar field \(X=(P,Q)\) with \(\max(\deg P,\deg Q)\le D\). Both degrees are ordinary total degrees in the Euclidean coordinates \(x,y\). The number of monomials is unrestricted. Hyperbolicity means that the return multiplier has modulus different from one. Counting all isolated periodic orbits gives the Hilbert number \(H(D)\ge\HH(D)\). Unmarked logarithms are natural.
+
 \begin{theorem}\label{th:main}
-There are constants $K>0$ and $D_0$ such that, for every integer $D\ge D_0$, a field of degree at most $D$ has at least
+Take \(\lambda=\pi\), \(c_0=3/16\) and \(c_1=5/24\). There exist \(K>0\) and \(D_0\) such that for every integer \(D\ge D_0\) and each \(p\in\{0,1\}\) some even \(N,M\) and a choice of \(C_p\) give one polynomial perturbation of \(C_pZ\), of total degree at most \(D\), with at least
 \begin{equation}\label{eq:main}
- \frac{5D^2}{24(\ln 2)^2}\bigl((\ln D)^2-2\ln D\ln\ln D\bigr)-K D^2\ln D
+ \frac{c_p D^2}{(\ln 2)^2}
+       \bigl((\ln D)^2-2\ln D\ln\ln D\bigr)-K D^2\ln D
 \end{equation}
-distinct hyperbolic limit cycles. In particular $\liminf_{D\to\infty}\HH(D)/(D^2(\ln D)^2)\ge 5/[24(\ln 2)^2]$.
+distinct hyperbolic limit cycles. In particular
+\(\displaystyle\liminf_{D\to\infty}\HH(D)/(D^2(\ln D)^2)\ge 5/[24(\ln 2)^2]\).
 \end{theorem}
 
-Qin and Sun obtained square-logarithmic growth by a hierarchy of first-order perturbations~\cite{qin}. Their Theorem~2.2 supplies the hierarchical realization step. For Theorem~1.1 they use two ternary filtrations on an anisotropic squared-Chebyshev Hamiltonian. The filtrations group centers and perturbations so that a diagonal block acts by the same germ up to scale on many annuli. Under sufficiently strong anisotropy a Borel--Gauss argument gives full rank on their Cartesian blocks. We use the same principle of simultaneous realization. Here the centers sit at the extrema between consecutive invariant lines. A binary filtration can use these extrema, and its triangular degree cutoff creates a kernel even in a single block. Determining how a positive multiplier changes this kernel is the source of the coefficient in \eqref{eq:main}.
+Christopher and Lloyd's fourfold construction copies existing cycles and creates new nests near centers~\cite[\S3]{christopher}. Li, Chan and Chung revised the count for symmetric Hamiltonian constructions and obtained order \(D^2\ln D\) on the sequences \(2^j-1\) and \(3\cdot2^{j-1}-1\)~\cite[\S3 and Theorem 5.2]{lichan}. Han and Li proved an all-degree \(\liminf\) bound with coefficient \(1/(2\ln 2)\) on the scale \(D^2\ln D\). Their recurrence carries both odd-multiplicity cycles and specified boundary tangencies on a rectangle~\cite[Theorems 1.3 and 2.1]{hanli}. These tangencies make further creation of cycles possible after a fold. In the present construction the rectangle edges are saddle connections. The cycles are created on regular ovals in their interiors.
 
-Multipliers also appear in the construction of Gasull and Santana, who multiply a field by the equation of a prescribed algebraic curve with only finitely many singular points and perturb so as to keep its old cycles and obtain algebraic cycles on ovals of the curve~\cite[Theorem A]{invariant}. Here the multiplier is positive throughout the grid. The cycles counted below bifurcate from compact regular ovals strictly inside its cells. The geometry of the saddle connections supplies the period annuli, while the integral on each annulus determines the count.
+Two recent preprints reach the \(D^2(\ln D)^2\) scale. Qin and Sun use two ternary filtrations of a squared-Chebyshev Hamiltonian and prove independence on Cartesian sets of perturbations under sufficiently strong anisotropy~\cite[Theorems 1.1 and 2.2, \S5]{qin}. Their hierarchical choice of coefficients is also the realization principle used here. Lu's mechanical renewal uses successive folds and new zeros of auxiliary one-dimensional periods. Its all-degree coefficient for hyperbolic cycles is \(1/8\) in units of \((\ln 2)^{-2}\), with a loss \(O(D^2\ln D)\)~\cite[Theorem 1.1]{mechanical}. In the same units the three coefficients are \(6/48,\ 9/48,\ 10/48\). The unweighted grid accounts for three quarters of the additive increase over renewal, a factor \(3/2\). The positive multiplier supplies the remaining \(1/48\), a further factor \(10/9\). Formula~\eqref{eq:main} displays the larger loss incurred by our all-degree interpolation.
 
-A different all-degree bound comes from mechanical renewal. Auxiliary one-dimensional folds supply families of new period zeros at each planar copying stage. The leading coefficient is $1/[8(\ln2)^2]$ and the error is $O(D^2\ln D)$ in Lu's lower bound for hyperbolic cycles~\cite[Theorem 1.1]{mechanical}. Theorem~\ref{th:main} increases that leading coefficient by a factor of $5/3$, with a larger lower-order loss. Both bounds use the total degree of the final field. An ordinary monomial budget counts the terms in the two expanded components and allows arbitrary exponents. A single Chebyshev mode can contain many such terms. Section~\ref{sec:counts} compares the degree quantifiers and finite certificates. The monomial-budget problem is treated in~\cite{monomial}.
+The difference between the two period maps can be seen before optimizing the grid. At \(N=M=4,\ D=11\), with \(\lambda=\pi\) and generic \(\kappa\), the same 42 forms with odd indices span 22 dimensions of first-return periods for \(Z\) and 33 for \((1-\kappa g)Z\). The rank argument begins with a fixed anisotropy. Each unweighted period has a Laplace transform sampled at \((z,w)=(\lambda s,s)\). A horizontal frequency of one perturbation can have the same pole as that of another with a different vertical frequency. After a common normalization the Taylor coefficients are Laurent polynomials over \(\QQ\) in the variable anisotropy. At a transcendental \(\lambda\) this lifts a putative relation for one field to an identity for independent \(z,w\). Section~\ref{sec:pure} separates the frequency \emph{pairs} in this identity.
 
-Expanding the reciprocal carrier in its parameter gives moments on a quadrant arc of an oval. These moments reduce a possible kernel element to a multiple of the foliation form plus an unweighted period relation. The remaining obstruction is a collision of frequencies. A high-degree term can have the same horizontal pole as a lower-degree term with a different vertical frequency. Varying the anisotropy in an analytic identity gives two independent Laplace variables. After separating the vertical frequency classes, a horizontal residue detects precisely the terms that would exceed the degree budget.
+The cutoff \(a+b\le D+1\) then determines which relations survive weighting. Moments of the reciprocal multiplier first give a decomposition into an unweighted relation and a multiple of the form defining the foliation. Polynomial division can place terms of this decomposition above the triangular cutoff. Section~\ref{sec:carrier} identifies these terms by the joint frequency separation, giving an exact direct sum for the kernel within the degree bound.
+
+Finally, on each dyadic layer a rank \(d\) yields \(d-1\) simple zeros at positive energies. Reflections identify the diagonal period on all cells of that layer up to sign. The dyadic visibility of the other perturbations allows the zeros on all selected layers to persist for a single field. This gives the integer count in Theorem~\ref{th:finite}. The separate maxima at each degree in Section~\ref{sec:comparison} measure how often the multiplier pays for its additional \(M\) degrees.
 
 \section{The grid and its first variation}\label{sec:grid}
 We use $T_n(\cos t)=\cos(nt)$ and $U_{n-1}(\cos t)=\sin(nt)/\sin t$, so $T'_n=nU_{n-1}$. Set $S=D+1$. Take $N,M\ge2$ and use either $C=1$ ($p=0$, $\kappa=0$) or $C=1-\kappa g$ ($p=1$, $0<\kappa<1/2$). Assume $N+(1+p)M\le S$. For a polynomial form $\omega=A\,dx+B\,dy$ with $\max(\deg A,\deg B)\le D$, consider
@@ -63,7 +70,7 @@ We use $T_n(\cos t)=\cos(nt)$ and $U_{n-1}(\cos t)=\sin(nt)/\sin t$, so $T'_n=nU
  X_\mu=\bigl(Cfg'-\mu B,\;-C\lambda f'g+\mu A\bigr),\qquad
  \Omega=\lambda f'g\,dx+fg'\,dy .
 \end{equation}
-Since $|g|\le1$ on $[-1,1]$, the carrier exceeds $1/2$ on the grid. Both unperturbed components have degree $d_0=N+(1+p)M-1$. Thus \eqref{eq:field} has degree at most $D$ for every real $\mu$. For fixed nonzero $\omega$ and sufficiently small nonzero $\mu$, its actual degree is $\max(d_0,\deg\omega)$. When the two degrees coincide a nonzero top coefficient of $X_0$ stays nonzero by continuity.
+Since $|g|\le1$ on $[-1,1]$, the multiplier exceeds $1/2$ on the closures of the bounded cells. Both components at \(\mu=0\) have degree $d_0=N+(1+p)M-1$. Thus \eqref{eq:field} has degree at most $D$ for every real $\mu$. For fixed nonzero $\omega$ and sufficiently small nonzero $\mu$, its actual degree is $\max(d_0,\deg\omega)$. When the two degrees coincide a nonzero top coefficient of $X_0$ stays nonzero by continuity.
 
 The $N$ roots $\cos((2a-1)\pi/(2N))$, $1\le a\le N$, and the analogous $M$ vertical-coordinate roots delimit $(N-1)(M-1)$ bounded rectangles. Between consecutive roots in each coordinate use
 \begin{equation}\label{eq:chart}
@@ -85,16 +92,20 @@ On a regular period annulus the time-change calculation has a simple general for
 \[
  \int_0^{T(h)}\frac{dH(Y)(z_h(t))}{C(z_h(t))}\dd t .
 \]
-Indeed $\dot H=\mu dH(Y)$ on the perturbed arc, and at $\mu=0$ the time element of $CZ$ is $dt/C$. Thus the local contribution of the perturbation is multiplied by the reciprocal speed factor on each arc.
+Indeed $\dot H=\mu dH(Y)$ on the perturbed arc, and at $\mu=0$ the time element of $CZ$ is $dt/C$.
 
 For the grid, the form $C\Omega-\mu\omega$ annihilates $X_\mu$. Use the section $\eta=0$, $\xi>0$ with coordinate $h=H$. On each compact interval $I\Subset(0,\infty)$ the energy displacement is
 \begin{equation}\label{eq:period}
  \mathcal P_\mu(h)-h=-\mu L_C[\omega](h)+O_{C^1(I)}(\mu^2),\qquad
  L_C[\omega](h)=\oint_{\gamma_h}\frac{\omega}{C\,|fg|}.
 \end{equation}
-Indeed the exact trajectory identity is $dH=-\mu\omega/(Cfg)$ on orbit tangents. The forward orientation cancels the sign of $fg$. An enlarged compact energy interval in $(0,\infty)$ provides a collar on which $C>1/2$, $fg\ne0$ and $X_0\ne0$. Transversality and analytic dependence of the local flow give an analytic return time near each point of $I$. Compactness gives bounded return times, persistence of these first returns inside the collar and a uniform Taylor remainder together with its $h$-derivative. This also proves real analyticity of $L_C$ on the positive energy axis.
+Write \(\Lu=L_{C\equiv1}\) for the unweighted map. The exact trajectory identity is $dH=-\mu\omega/(Cfg)$ on orbit tangents. The forward orientation cancels the sign of $fg$. To justify the remainder, enlarge \(I\) slightly inside \((0,\infty)\). The corresponding closed annular collar lies in one cell, with \(C>1/2\), \(fg\ne0\) and \(X_0\ne0\). In the chart~\eqref{eq:chart} put \(z(h)=(\arccos e^{-h/\lambda},0)\) and write \(\Phi(t,z,\mu)\) for the flow. Along one unperturbed circuit the analytic local flows compose finitely many times, so \(\Phi(t,z(h),\mu)\) is jointly real analytic near the circuit in \((t,h,\mu)\). At its return time \(T_*\) for \(h=h_*\), the equation
+\[
+ \eta\bigl(\Phi(t,z(h),\mu)\bigr)=0
+\]
+has nonzero \(t\)-derivative. The analytic implicit function theorem gives a unique return time \(T(h,\mu)\) near \(T_*\). Transversality excludes an early crossing near departure. The compact middle arc stays a positive distance from the positive half-section, and the last crossing is unique in its flow box. Thus these local times are first returns and agree on overlaps. A finite cover of \(I\) gives one range of \(\mu\) and makes \(\mathcal P_\mu(h)=H(\Phi(T(h,\mu),z(h),\mu))\) jointly analytic near \(I\times\{0\}\). Taylor expansion in \(\mu\), also after one \(h\)-derivative, gives the uniform estimate in~\eqref{eq:period}. Since \(\mathcal P_0(h)=h\), its displacement divided by \(-\mu\) extends analytically to \(\mu=0\) with value \(L_C[\omega](h)\).
 
-One can see an individual direction become visible already at $N=M=2$. In the only cell, $f=-\cos\xi$, $g=-\cos\eta$ and $A=xy=\sin(\xi/2)\sin(\eta/2)$. Put $\omega=f\,dA+\lambda A\,df$ and $V=|f|^\lambda A$. Along the oval $\omega/|fg|=-e^h dV$, so $L_1[\omega]=0$. With $C=1-\kappa g$, integration by parts gives
+One can see an individual direction become visible already at $N=M=2$. In the only cell, $f=-\cos\xi$, $g=-\cos\eta$ and $A=xy=\sin(\xi/2)\sin(\eta/2)$. Put $\omega=f\,dA+\lambda A\,df$ and $V=|f|^\lambda A$. Along the oval $\omega/|fg|=-e^h dV$, so $\Lu[\omega]=0$. With $C=1-\kappa g$, integration by parts gives
 \begin{equation}\label{eq:visible}
  L_C[\omega]=\kappa e^h\oint_{\gamma_h}\frac{V\,dg}{C^2}>0\qquad (h>0).
 \end{equation}
@@ -128,7 +139,7 @@ Here $C=1-p\kappa e_l\cos\eta$. A mode from $(k',l')$ vanishes on $J_k\times I_l
 splits into a frequency sign and a cell sign. The block period maps on its cells thus agree up to one overall sign. In computing ranks we use the cell with $j'=i'=1$.
 
 \begin{theorem}[Block ranks]\label{th:rank}
-Fix a real transcendental $\lambda>1$. Abbreviate $P=P_{kl}$. With $C=1$ the real rank of $L_1$ on $W(X)$, for every real $X$, is
+Fix a real transcendental $\lambda>1$. Abbreviate $P=P_{kl}$. With $C=1$ the real rank of $\Lu$ on $W(X)$, for every real $X$, is
 \begin{equation}\label{eq:pure}
  R_0(X)=2P(X)-P(X-N)-P(X-M).
 \end{equation}
@@ -138,10 +149,11 @@ With $C=1-\kappa g$ and $N+2M\le S$, the real rank on $W(S)$ is
 \end{equation}
 for all $\kappa\in(0,1/2)$ outside a finite set. For fixed $N,M,S,\lambda$ one choice works for every block.
 \end{theorem}
-Here the subscript in $L_C$ denotes the polynomial multiplier. In particular $L_1$ is the unweighted map. The ranks concern the specified spaces of period functions. The passage from their dimensions to a lower bound for cycles is made in Section~\ref{sec:counts}.
+The ranks are dimensions of spaces of functions of \(h\). For instance, at \(N=M=4\), \(k=l=2\) and \(S=12\) there are 21 pairs. Equations~\eqref{eq:pure} and~\eqref{eq:carrier} give the ranks 22 and 33 quoted in the introduction.
 \input{unweighted}
 \input{weighted}
 \input{counts}
+\input{comparison}
 \bibliographystyle{amsplain}
 \bibliography{references}
 \end{document}
