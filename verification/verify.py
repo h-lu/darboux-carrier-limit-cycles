@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 
 import certificates
+from degree_comparisons import order_table
 import ranks
 
 
@@ -32,6 +33,7 @@ def main():
         summary, table = certificates.run()
         products["certificates.json"] = json_text(summary)
         products["degrees.csv"] = table
+        products["comparisons.csv"] = order_table(table)
     for name, value in products.items():
         if args.write:
             args.write.mkdir(exist_ok=True, parents=True)

@@ -1,8 +1,8 @@
 # First-return periods on Darboux grids and hyperbolic limit cycles of polynomial fields
 
-Haibo Lu, Shanghai Institute of Technology. English manuscript R4.
+Haibo Lu, Shanghai Institute of Technology. English manuscript R5.
 
-[Paper](manuscript/main.pdf) · [TeX entry point](manuscript/main.tex) · [Bibliography](manuscript/references.bib) · [Exact reproduction](verification/README.md) · [Degree-by-degree bounds and grid witnesses](verification/results/degrees.csv).
+[Paper](manuscript/main.pdf) · [TeX entry point](manuscript/main.tex) · [Bibliography](manuscript/references.bib) · [Exact reproduction](verification/README.md) · [Degree-by-degree bounds and grid witnesses](verification/results/degrees.csv) · [Exact comparison intervals](verification/results/comparisons.csv).
 
 The paper proves the rank and kernel formulas on dyadic blocks, realizes their simple period zeros in one field and gives the two all-degree estimates. The finite ledger records separate maxima for the unweighted and weighted grids.
 

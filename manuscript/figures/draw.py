@@ -111,12 +111,12 @@ def frequencies():
     high = [(a+4,b) for a in range(1, 9, 2) for b in (1, 3) if 4 < a+b <= 8]
     right.plot(*zip(*high), ls="", marker="D", color=RED, ms=5.8)
     right.plot([7,7], [1,3], ":", lw=1.4, color=INK, zorder=0)
-    right.plot([], [], "o", mfc="white", mec=BLUE, ms=6, label="one border form")
-    right.plot([], [], "o", mfc=BLUE, mec=BLUE, ms=6, label="two border forms")
-    right.plot([], [], "D", color=RED, ms=5, label="one added form")
+    right.plot([], [], "o", mfc="white", mec=BLUE, ms=6, label=r"$E_{ab}$ or $F_{ab}$")
+    right.plot([], [], "o", mfc=BLUE, mec=BLUE, ms=6, label=r"$E_{ab}$ and $F_{ab}$")
+    right.plot([], [], "D", color=RED, ms=5, label=r"$D_\lambda A_{ab}$ at $(a+4,b)$")
     right.legend(loc="upper right", fontsize=7, frameon=False, handlelength=1.1)
-    left.set_title("Unweighted periods (rank 22)", fontsize=10)
-    right.set_title("Augmented test (14 + 4 forms)", fontsize=10)
+    left.set_title(r"Unweighted basis $V(12)$", fontsize=10)
+    right.set_title(r"Periods of $V(8)$ and $D_\lambda A_{ab}$", fontsize=10)
     fig.savefig(OUTPUT/"frequencies.pdf", metadata=PDF_META)
     plt.close(fig)
 

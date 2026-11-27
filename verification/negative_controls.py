@@ -28,7 +28,8 @@ def main():
     with tempfile.TemporaryDirectory() as directory:
         dst = Path(directory)
         original = HERE/"results"
-        (dst/"certificates.json").write_bytes((original/"certificates.json").read_bytes())
+        for name in ("certificates.json", "comparisons.csv"):
+            (dst/name).write_bytes((original/name).read_bytes())
         rows = list(csv.DictReader(io.StringIO((original/"degrees.csv").read_text())))
         for degree, field, clean, replacement in (("5", "mechanical", "4", "0"),
                                                   ("95", "weighted", "47783", "48071")):
@@ -44,6 +45,17 @@ def main():
             expect_failure(["verify.py", "--part", "certificates", "--reference", str(dst)],
                            "degrees.csv differs from the recomputed result")
             row[field] = clean
+
+        # The ternary field has no seed before D=31. A missing seed is not a tie.
+        (dst/"degrees.csv").write_bytes((original/"degrees.csv").read_bytes())
+        comparisons = (original/"comparisons.csv").read_text()
+        target = "unweighted,Qin_Sun,unavailable,26,5-30"
+        if comparisons.count(target) != 1:
+            raise ValueError("unexpected ternary comparison domain")
+        (dst/"comparisons.csv").write_text(comparisons.replace(target, target.replace("unavailable", "equal")))
+        print("altered absent ternary seeds at degrees 5-30 into ties")
+        expect_failure(["verify.py", "--part", "certificates", "--reference", str(dst)],
+                       "comparisons.csv differs from the recomputed result")
     print(f"negative controls passed (optimization level {sys.flags.optimize})")
 
 

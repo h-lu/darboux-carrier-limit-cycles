@@ -1,0 +1,53 @@
+left,right,relation,count,degree_intervals
+weighted,unweighted,greater,95,79-94 159-205 319-350
+weighted,unweighted,less,251,5-78 95-158 206-318
+weighted,unweighted,equal,0,
+weighted,unweighted,unavailable,0,
+unweighted,classical,greater,337,12 15-350
+unweighted,classical,less,9,5-11 13-14
+unweighted,classical,equal,0,
+unweighted,classical,unavailable,0,
+unweighted,two_source,greater,346,5-350
+unweighted,two_source,less,0,
+unweighted,two_source,equal,0,
+unweighted,two_source,unavailable,0,
+unweighted,Qin_Sun,greater,320,31-350
+unweighted,Qin_Sun,less,0,
+unweighted,Qin_Sun,equal,0,
+unweighted,Qin_Sun,unavailable,26,5-30
+unweighted,mechanical,greater,346,5-350
+unweighted,mechanical,less,0,
+unweighted,mechanical,equal,0,
+unweighted,mechanical,unavailable,0,
+weighted,classical,greater,330,20 22-350
+weighted,classical,less,16,5-19 21
+weighted,classical,equal,0,
+weighted,classical,unavailable,0,
+weighted,two_source,greater,346,5-350
+weighted,two_source,less,0,
+weighted,two_source,equal,0,
+weighted,two_source,unavailable,0,
+weighted,Qin_Sun,greater,320,31-350
+weighted,Qin_Sun,less,0,
+weighted,Qin_Sun,equal,0,
+weighted,Qin_Sun,unavailable,26,5-30
+weighted,mechanical,greater,346,5-350
+weighted,mechanical,less,0,
+weighted,mechanical,equal,0,
+weighted,mechanical,unavailable,0,
+grid,classical,greater,337,12 15-350
+grid,classical,less,9,5-11 13-14
+grid,classical,equal,0,
+grid,classical,unavailable,0,
+grid,two_source,greater,346,5-350
+grid,two_source,less,0,
+grid,two_source,equal,0,
+grid,two_source,unavailable,0,
+grid,Qin_Sun,greater,320,31-350
+grid,Qin_Sun,less,0,
+grid,Qin_Sun,equal,0,
+grid,Qin_Sun,unavailable,26,5-30
+grid,mechanical,greater,346,5-350
+grid,mechanical,less,0,
+grid,mechanical,equal,0,
+grid,mechanical,unavailable,0,
