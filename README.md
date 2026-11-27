@@ -88,7 +88,7 @@ The rebuilt PDF is `build/main.pdf` relative to the repository root. Recreating 
 
 ## Versions and files
 
-[`v1.0.1`](https://github.com/h-lu/darboux-carrier-limit-cycles/tree/v1.0.1) is the edition with the revised title and abstract. The theorems, proofs, figures, and reproduction code are unchanged from [`v1.0.0`](https://github.com/h-lu/darboux-carrier-limit-cycles/tree/v1.0.0). When citing or reproducing the paper, identify the tag you used.
+[`v1.0.1`](https://github.com/h-lu/darboux-carrier-limit-cycles/tree/v1.0.1) is the edition with the revised title and abstract. The theorems, proofs, figures, and reproduction code are unchanged from [`v1.0.0`](https://github.com/h-lu/darboux-carrier-limit-cycles/tree/v1.0.0). [`v1.0.2`](https://github.com/h-lu/darboux-carrier-limit-cycles/tree/v1.0.2) adds the author ORCID, manuscript date, and AI-use declaration. When citing or reproducing the paper, identify the tag you used.
 
 | Path | Contents |
 | --- | --- |
