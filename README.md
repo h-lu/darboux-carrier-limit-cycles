@@ -1,84 +1,98 @@
-# First-return periods on Darboux grids and hyperbolic limit cycles of polynomial fields
+# An Improved Asymptotic Lower Bound for Hyperbolic Limit Cycles of Planar Polynomial Vector Fields via Darboux Grids
 
 Haibo Lu · Shanghai Institute of Technology
 
-[Read the paper](manuscript/main.pdf) · [TeX source](manuscript/main.tex) · [Exact reproduction guide](verification/README.md) · [Finite-degree data](verification/results/degrees.csv) · [Frozen manuscript: v1.0.0](https://github.com/h-lu/darboux-carrier-limit-cycles/tree/v1.0.0)
+[Paper PDF](manuscript/main.pdf) · [TeX source](manuscript/main.tex) · [Reproduction guide](verification/README.md) · [Degree-by-degree results](verification/results/degrees.csv)
 
-## What the paper proves
+## Main result
 
-How many hyperbolic limit cycles can coexist in **one** real planar polynomial vector field of total degree at most $D$? Here $D$ bounds the larger of the two component degrees. It is not a monomial budget, nor is the field required to have degree exactly $D$. The paper gives constructive lower bounds, not upper bounds or a determination of the Hilbert number.
-
-For every sufficiently large integer $D$, Theorem 1.1 constructs fields with at least
+For every sufficiently large integer $D$, a single real planar polynomial vector field of total degree at most $D$ can have at least
 
 $$
-\frac{c_p D^2}{(\ln 2)^2}\bigl((\ln D)^2-2\ln D\,\ln\ln D\bigr)-K D^2\ln D
+\frac{5D^2}{24(\ln 2)^2}
+\left((\ln D)^2-2\ln D\,\ln\ln D\right)-K D^2\ln D
 $$
 
-distinct hyperbolic limit cycles, with $c_0=3/16$ for the unweighted grid and $c_1=5/24$ for the weighted grid. Each construction uses one perturbation to realize the cycles simultaneously across selected annuli. The constants $c_p$ are leading coefficients in units of $(\ln 2)^{-2}$; they are not exact finite-degree counts.
+distinct hyperbolic limit cycles, for a constant $K>0$. The total degree of a vector field is the larger of the two component degrees. The bound concerns cycles coexisting in one field under this degree budget; there is no restriction on the number of nonzero monomials.
 
-## Why the multiplier matters
+The three leading coefficients below multiply the same scale, $D^2(\ln D)^2/(\ln 2)^2$:
 
-1. **Keep the closed curves.** The zero lines of the Chebyshev polynomials $T_N(x)$ and $T_M(y)$ bound rectangular cells with nested periodic ovals. Multiplying the unperturbed field by $C=1-\kappa T_M(y)$, with $0<\kappa<1/2$, preserves the ovals inside these cells and changes the speed along them.
-2. **Change the first variation.** When the polynomial perturbation is added independently of $C$, the first variation of the return map uses the reciprocal weight $1/C$. A relatively exact form that integrates to zero without the weight can give a nonzero weighted period. The paper computes the resulting ranks under the triangular total-degree cutoff. For example, at $N=M=4$, $D=11$ and $\lambda=\pi$, the rank of the 42-form odd block is 22 without the multiplier and 33 with generic multiplier strength. These are **ranks**, not direct counts of cycles.
-3. **Turn rank into cycles.** A rank-$r$ block supplies $r-1$ simple return zeros. A hierarchy of coefficients makes the selected simple zeros persist in one field, where they yield hyperbolic limit cycles. The proof fixes a transcendental anisotropy to separate the two frequency indices in the Laplace representation. Finite rational and modular rank checks test examples; they do not substitute for that proof.
+| Construction | Leading coefficient |
+| --- | ---: |
+| Earlier mechanical renewal | $1/8$ |
+| Unweighted Darboux grid | $3/16$ |
+| Weighted Darboux grid | $5/24$ |
 
-The multiplier costs $M$ degrees: the unweighted carrier has degree $N+M-1$ and the weighted one has degree $N+2M-1$. A higher leading coefficient does not imply a better certificate at each finite budget.
+The unweighted grid raises the earlier coefficient by a factor of $3/2$. Adding the multiplier raises it by a further factor of $10/9$ at the same degree budget. These are improvements in the leading coefficients of constructive lower bounds, rather than comparisons at every finite degree.
 
-## Equal-degree comparisons
+## How the construction produces more cycles
 
-The [degree ledger](verification/results/degrees.csv) separately maximizes the two specified grid certificates at every integer budget from 3 to 350 and records each maximizing pair $(N,M)$. The weighted grid first fits at $D=5$. There are no ties between the two grid certificates on their common domain:
+The zero lines of two Chebyshev polynomials form rectangular cells. A Darboux first integral gives nested periodic ovals in each cell, and small polynomial perturbations can turn selected ovals into limit cycles.
 
-| Larger certificate | Integer degree budgets through 350 |
-| --- | --- |
-| Weighted grid | 79–94, 159–205, 319–350 |
-| Unweighted grid | 5–78, 95–158, 206–318 |
+Multiplying the unperturbed field by a positive polynomial preserves those ovals but changes the speed along them. When the perturbation is added separately, its first-return integral acquires the reciprocal of the multiplier as a weight. Some perturbations whose unweighted integrals vanish then contribute to the return displacement. This increases the number of independent return integrals. The proof uses the two Chebyshev frequency indices to determine their ranks under the total-degree cutoff, then chooses a single perturbation whose simple return zeros persist simultaneously on many annuli.
 
-For example, at $D=79$ the weighted and unweighted counts are **25,947** and **24,879**, respectively. At $D=255$ the order reverses: the unweighted $128\times128$ square gives **594,111**, while the best weighted rectangle, $128\times64$, gives **561,279**. Weighting that same square would require degree 383.
+For example, at grid orders $N=M=4$ and budget $D=11$, the same 42-dimensional odd block has rank 22 without weighting and rank 33 with generic weighting. These are ranks, not counts of limit cycles. The cycle certificate also accounts for which cell layers each block is used on and how many simple zeros are realized there.
 
-The leading coefficients of the previous mechanical renewal, the unweighted grid, and the weighted grid are respectively $1/8$, $3/16$, and $5/24$ in the same units. The grid construction already improves the leading coefficient without weighting; the multiplier gives a further increase at a degree cost. Section 6 explains the comparison with Qin–Sun's ternary seeds, distinguishing the original subsequence estimate from its extension to all degrees.
+## What changes at finite degree
 
-The [comparison ledger](verification/results/comparisons.csv) also compares the two grids and their maximum with four specified baselines. The classical column counts isolated cycles, not necessarily hyperbolic ones; it still exceeds the combined grid certificate at budgets 5–11, 13 and 14. The two-source column uses the **empty-seed** version, and the ternary column is unavailable before degree 31. These are comparisons of particular constructions, not a ranking of all possible fields or all variants of those methods.
+The unweighted carrier has degree $N+M-1$; the weighted carrier has degree $N+2M-1$. At a fixed budget, the extra $M$ degrees can force the weighted construction to use a smaller grid. This explains why the advantage reverses even though the weighted leading coefficient is larger:
 
-## Reproduce the calculations
+| Total degree budget | Unweighted certificate | Weighted certificate |
+| ---: | ---: | ---: |
+| 78 | 24,399 | 20,799 |
+| 79 | 24,879 | 25,947 |
+| 95 | 48,071 | 47,783 |
+| 255 | 594,111 | 561,279 |
+| 319 | 793,839 | 875,631 |
 
-Run from the repository root with Python 3.9 or later. The exact checks use the standard library and need no network or computer algebra system.
+The [finite ledger](verification/results/degrees.csv) separately optimizes the two grid certificates at every integer budget from 3 through 350, recording a witnessing pair $(N,M)$ for each maximum. The weighted grid is available from $D=5$ and gives the larger certificate on 79–94, 159–205, and 319–350. The unweighted grid gives the larger certificate at every other budget in their common range through 350.
 
-```sh
+[Section 6 of the paper](manuscript/main.pdf) aligns the degree budgets and cycle conventions of the literature comparisons. It treats Qin–Sun's ternary seeds separately on their original degree subsequence and after extension to all sufficiently large budgets. The [comparison ledger](verification/results/comparisons.csv) compares specified constructions; its classical column counts isolated cycles, which need not be hyperbolic.
+
+## Reproduce the results
+
+From the repository root, use Python 3.9 or later. The numerical checks below are exact, use the standard library, and require no network, plotting package, or computer algebra system.
+
+~~~sh
 sha256sum -c SHA256SUMS
 python3 -B verification/verify.py
 python3 -B -O verification/verify.py
 python3 -B verification/negative_controls.py
 python3 -B -O verification/negative_controls.py
-```
+~~~
 
-- `verify.py` recomputes and compares four archived files: rank checks, cycle certificates, the finite-degree ledger, and the comparison intervals. For a smaller check use `--part ranks` or `--part certificates`. To write new output separately, use `--write <directory>`.
-- `negative_controls.py` tests that the verifier rejects deliberately insufficient rank evidence and altered data, including an error hidden by an unchanged combined maximum.
-- For a single degree budget of at least 15, the commands below compute the **square-grid witnesses used in the all-degree proof**, not the optimized finite table.
+- **Full verification:** recomputes the rank checks, cycle certificates, and both finite ledgers and compares their contents with the archived results.
+- **Focused verification:** add `--part ranks` or `--part certificates` to `verify.py`. Use `--write <directory>` to save recomputed results separately.
+- **Negative controls:** check that missing rank evidence, changed counts, and an incorrectly filled unavailable comparison are rejected. Running under `-O` confirms that checks are not silently removed by Python optimization.
 
-```sh
+To check one of the square-grid witnesses used in the asymptotic proof, supply the desired integer budget (at least 15). These commands evaluate the proof's witnesses, not the optimized finite ledger:
+
+~~~sh
 python3 -B verification/certificates.py 1000000 --unweighted
 python3 -B verification/certificates.py 1000000
-```
+~~~
 
-## Rebuild the paper
+See the [technical reproduction guide](verification/README.md) for the rank arithmetic, certificate definitions, and ledger columns. The finite exact checks complement the proofs in the paper.
 
-With `latexmk` and a TeX installation that includes the packages listed in [main.tex](manuscript/main.tex), use the supplied figure PDFs:
+## Rebuild the PDF
 
-```sh
+With `latexmk` and the TeX packages listed in [the source](manuscript/main.tex), run the following from the repository root. The figure PDFs are included.
+
+~~~sh
 mkdir -p build
 cd manuscript
 SOURCE_DATE_EPOCH=1795737600 latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=../build main.tex
-```
+~~~
 
-The result is `build/main.pdf` relative to the repository root. Redrawing the two figures is optional and requires NumPy and Matplotlib: run `python3 manuscript/figures/draw.py` from the root in a working copy. See the [technical reproduction guide](verification/README.md) for the exact arithmetic, row conventions, ledger columns, and negative tests.
+The rebuilt PDF is `build/main.pdf` relative to the repository root. Recreating the figure PDFs is optional and requires NumPy and Matplotlib; run `python3 manuscript/figures/draw.py` from the root of a working copy.
 
-## Repository map
+## Versions and files
 
-| Location | Contents |
+[`v1.0.1`](https://github.com/h-lu/darboux-carrier-limit-cycles/tree/v1.0.1) is the edition with the revised title and abstract. The theorems, proofs, figures, and reproduction code are unchanged from [`v1.0.0`](https://github.com/h-lu/darboux-carrier-limit-cycles/tree/v1.0.0). When citing or reproducing the paper, identify the tag you used.
+
+| Path | Contents |
 | --- | --- |
-| [`manuscript/`](manuscript/) | Final PDF, TeX, bibliography and figures |
-| [`verification/`](verification/) | Exact rank and cycle checks with a technical guide |
-| [`verification/results/`](verification/results/) | Expected results and finite comparison data |
-| [`SHA256SUMS`](SHA256SUMS) | Integrity hashes for the manuscript and reproduction files |
-
-For citation, use the author and title above and identify the frozen manuscript by tag `v1.0.0`. The tag fixes the manuscript and scientific artifacts even if this landing page is clarified later.
+| [`manuscript/`](manuscript/) | PDF, LaTeX, bibliography, and figures |
+| [`verification/`](verification/) | Rank and cycle checks and the technical guide |
+| [`verification/results/`](verification/results/) | Archived exact results and comparison tables |
+| [`SHA256SUMS`](SHA256SUMS) | File integrity hashes |
